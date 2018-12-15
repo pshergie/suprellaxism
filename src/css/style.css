@@ -1,0 +1,19 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 16px;
+  background: black;
+  color: white;
+  font-family: 'B612 Mono', monospace;
+}
+
+.title {
+  margin-top: 40px;
+}
