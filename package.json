@@ -1,0 +1,22 @@
+{
+  "name": "suprellaxism",
+  "version": "1.0.0",
+  "description": "- [ ] Lightbox - [ ] Parallax - [ ] Mobile version - [ ] Add at least 15 pictures",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Basilews/suprellaxism.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Basilews/suprellaxism/issues"
+  },
+  "homepage": "https://github.com/Basilews/suprellaxism#readme",
+  "dependencies": {
+    "parallax-js": "^3.1.0"
+  }
+}
