@@ -79,8 +79,6 @@ class Picture {
       speed: figure.speed,
     }));
 
-    console.log(this.figures[0], this.figures[1]);
-
     this.x = e.offsetX;
     this.y = e.offsetY;
 
