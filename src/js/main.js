@@ -37,7 +37,7 @@ class Picture {
     }
 
     // event listener
-    window.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', (e) => {
       this.moveObjects(e);
     }, { passive: true });
 
@@ -73,14 +73,16 @@ class Picture {
 
   moveObjects(e) {
     if (!this.x && !this.y) {
-      this.x = e.offsetX;
-      this.y = e.offsetY;
+      this.x = e.clientX;
+      this.y = e.clientY;
       return;
     }
 
+    console.log(e.clientX, e.clientY);
+
     this.figures = this.figures.map(figure => ({
-      x: figure.x + (this.x - e.offsetX) * figure.speed / 100,
-      y: figure.y + (this.y - e.offsetY) * figure.speed / 100,
+      x: figure.x + (this.x - e.clientX) * figure.speed / 100,
+      y: figure.y + (this.y - e.clientY) * figure.speed / 100,
       width: figure.width,
       height: figure.height,
       fillColor: figure.fillColor,
@@ -88,8 +90,8 @@ class Picture {
       speed: figure.speed,
     }));
 
-    this.x = e.offsetX;
-    this.y = e.offsetY;
+    this.x = e.clientX;
+    this.y = e.clientY;
 
     requestAnimationFrame(() => this.redraw());
   }
