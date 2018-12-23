@@ -16,7 +16,4 @@
     "url": "https://github.com/Basilews/suprellaxism/issues"
   },
   "homepage": "https://github.com/Basilews/suprellaxism#readme",
-  "dependencies": {
-    "parallax-js": "^3.1.0"
-  }
 }
