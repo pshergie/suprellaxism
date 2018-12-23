@@ -32,62 +32,33 @@ body {
 
 .pictures {
   width: 100%;
-  height: auto;
+  max-height: calc(100% - 64px);
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: baseline;
-  padding-bottom: 16px;
+  align-items: center;
 }
 
 #cvs {
   min-width: 288px;
   max-width: calc(100vw - 32px);
-  /* width: fit-content; */
   max-height: calc(100vh - 120px);
-  /* height: fit-content; */
   margin: 0 auto;
   background: #ffffff;
   object-fit: contain;
 }
 
-/* Pictures */
+@media screen and (max-width: 768px) {
+  .title {
+    margin-top: 0;
+    font-size: 16px;
+  }
 
-.blackRedSquare {
-  position: relative;
+  .pictures {
+    max-height: calc(100% - 32px);
+  }
 
-  /* max-width: 1243px;
-  width: 100%;
-  max-height: 2000px;
-  height: 100%; */
-
-  max-width: calc(100vw - 32px);
-  width: 1243px;
-  max-height: calc(100% - 80px);
-  height: 2000px;
-
-  margin: 0 auto;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background: #d2cec2;
-  overflow: hidden;
-}
-
-.blackSquare {
-  position: absolute;
-  top: 60px;
-  left: 400px;
-  width: 350px;
-  height: 350px;
-  background: #242424;
-}
-
-.redSquare {
-  position: absolute;
-  bottom: 30px;
-  left: 620px;
-  width: 200px;
-  height: 200px;
-  transform: rotate(-15deg);
-  background: #a73a39;
+  #cvs {
+    max-height: calc(100vh - 60px)
+  }
 }

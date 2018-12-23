@@ -1,9 +1,8 @@
 # suprelaxism
 
 - [x] Parallax
-- [ ] Picture proportions
+- [x] Picture proportions
 - [ ] Gyroscope move detection
 - [ ] Gallery
 - [ ] Picture picker
-- [ ] Mobile version
-- [ ] Add at least 15 pictures
+- [ ] Add at least 16 pictures
