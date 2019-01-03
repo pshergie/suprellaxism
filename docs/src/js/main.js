@@ -25,6 +25,9 @@ class Picture {
     this.figures = [];
     this.x = null;
     this.y = null;
+    // this.gx = null;
+    // this.gy = null;
+    // this.timer = 0;
 
     cvs.style.backgroundColor = picture.backgorundColor;
     cvs.width = picture.width;
@@ -41,14 +44,31 @@ class Picture {
       this.moveObjects(e);
     }, { passive: true });
 
-      // if (window.DeviceMotionEvent) {
-      //   window.addEventListener('devicemotion', (e) => {
-      //     console.log("Accelerometer: "
-      //       + event.accelerationIncludingGravity.x + ", "
-      //       + event.accelerationIncludingGravity.y + ", "
-      //     );
-      //   }, false);
-      // }
+      if (window.DeviceMotionEvent) {
+        window.addEventListener('devicemotion', (e) => {
+          const x = e.accelerationIncludingGravity.x.toPrecision(3);
+          const y = e.accelerationIncludingGravity.y.toPrecision(3);
+
+          if (!this.x && !this.y) {
+            this.x = x;
+            this.y = y;
+            return;
+          }
+
+          const acc = 0.12;
+
+          const xDiff = Math.abs(this.x - x).toPrecision(2);
+          const yDiff = Math.abs(this.y - y).toPrecision(2)
+
+          if (xDiff < acc || yDiff < acc) return;
+
+          this.moveObjects({
+            clientX: x,
+            clientY: y,
+            gyro: true,
+          });
+        }, { passive: true });
+      }
   }
 
   drawRectangles(rectangles) {
@@ -78,11 +98,11 @@ class Picture {
       return;
     }
 
-    console.log(e.clientX, e.clientY);
+    const factor = e.gyro ? 0.5 : 100;
 
     this.figures = this.figures.map(figure => ({
-      x: figure.x + (this.x - e.clientX) * figure.speed / 100,
-      y: figure.y + (this.y - e.clientY) * figure.speed / 100,
+      x: figure.x + (this.x - e.clientX) * figure.speed / factor,
+      y: figure.y + (this.y - e.clientY) * figure.speed / factor,
       width: figure.width,
       height: figure.height,
       fillColor: figure.fillColor,
