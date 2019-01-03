@@ -62,3 +62,7 @@ body {
     max-height: calc(100vh - 60px)
   }
 }
+
+.points {
+  margin-bottom: 16px;
+}

@@ -2,7 +2,8 @@
 
 - [x] Parallax
 - [x] Picture proportions
-- [ ] Gyroscope move detection
+- [x] Gyroscope move detection
+- [ ] Smooth gyroscope move
 - [ ] Gallery
 - [ ] Picture picker
 - [ ] Add at least 16 pictures
