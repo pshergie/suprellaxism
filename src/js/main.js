@@ -25,9 +25,10 @@ class Picture {
     this.figures = [];
     this.x = null;
     this.y = null;
-    // this.gx = null;
-    // this.gy = null;
-    // this.timer = 0;
+    this.beta = null;
+    this.alpha = null;
+    this.xPoint = document.getElementById('xPoint');
+    this.yPoint = document.getElementById('yPoint');
 
     cvs.style.backgroundColor = picture.backgorundColor;
     cvs.width = picture.width;
@@ -46,25 +47,37 @@ class Picture {
 
       if (window.DeviceMotionEvent) {
         window.addEventListener('devicemotion', (e) => {
-          const x = e.accelerationIncludingGravity.x.toPrecision(3);
-          const y = e.accelerationIncludingGravity.y.toPrecision(3);
+          // const x = e.accelerationIncludingGravity.x.toPrecision(3);
+          // const y = e.accelerationIncludingGravity.y.toPrecision(3);
 
-          if (!this.x && !this.y) {
-            this.x = x;
-            this.y = y;
+          const x = e.acceleration.x.toPrecision(3);
+          const y = e.acceleration.y.toPrecision(3);
+
+          const beta = e.rotationRate.beta.toPrecision(2)
+          const alpha = e.rotationRate.alpha.toPrecision(2);
+
+          if (!this.beta && !this.alpha) {
+            this.beta = beta;
+            this.alpha = alpha;
             return;
           }
 
-          const acc = 0.12;
+          const acc = 2;
 
-          const xDiff = Math.abs(this.x - x).toPrecision(2);
-          const yDiff = Math.abs(this.y - y).toPrecision(2)
+          const xDiff = Math.abs(this.beta - beta).toPrecision(2);
+          const yDiff = Math.abs(this.alpha - alpha).toPrecision(2)
 
-          if (xDiff < acc || yDiff < acc) return;
+          this.xPoint.innerHTML = beta;
+          this.yPoint.innerHTML = alpha;
+
+          // if (xDiff < acc || yDiff < acc) return;
+
+          const clientX = beta;
+          const clientY = alpha;
 
           this.moveObjects({
-            clientX: x,
-            clientY: y,
+            clientX,
+            clientY,
             gyro: true,
           });
         }, { passive: true });
@@ -98,20 +111,36 @@ class Picture {
       return;
     }
 
-    const factor = e.gyro ? 0.5 : 100;
+    const factor = e.gyro ? 15 : 100;
 
-    this.figures = this.figures.map(figure => ({
-      x: figure.x + (this.x - e.clientX) * figure.speed / factor,
-      y: figure.y + (this.y - e.clientY) * figure.speed / factor,
-      width: figure.width,
-      height: figure.height,
-      fillColor: figure.fillColor,
-      rotate: figure.rotate ? figure.rotate : null,
-      speed: figure.speed,
-    }));
+    if (e.gyro) {
+      this.figures = this.figures.map(figure => ({
+        x: figure.x + (this.beta - e.clientX) * figure.speed / factor,
+        y: figure.y + (this.alpha - e.clientY) * figure.speed / factor,
+        width: figure.width,
+        height: figure.height,
+        fillColor: figure.fillColor,
+        rotate: figure.rotate ? figure.rotate : null,
+        speed: figure.speed,
+      }));
 
-    this.x = e.clientX;
-    this.y = e.clientY;
+      this.beta = e.clientX;
+      this.alpha = e.clientY;
+    }
+    else {
+      this.figures = this.figures.map(figure => ({
+        x: figure.x + (this.x - e.clientX) * figure.speed / factor,
+        y: figure.y + (this.y - e.clientY) * figure.speed / factor,
+        width: figure.width,
+        height: figure.height,
+        fillColor: figure.fillColor,
+        rotate: figure.rotate ? figure.rotate : null,
+        speed: figure.speed,
+      }));
+
+      this.x = e.clientX;
+      this.y = e.clientY;
+    }
 
     requestAnimationFrame(() => this.redraw());
   }
