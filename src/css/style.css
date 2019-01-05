@@ -23,11 +23,11 @@ body {
   background: black;
   color: white;
   font-family: 'B612 Mono', monospace;
-  /* overflow: hidden; */
 }
 
 .title {
   margin-top: 16px;
+  text-align: center;
 }
 
 .pictures {
@@ -39,13 +39,66 @@ body {
   align-items: center;
 }
 
-#cvs {
-  min-width: 288px;
-  max-width: calc(100vw - 32px);
-  max-height: calc(100vh - 120px);
-  margin: 0 auto;
-  background: #ffffff;
-  object-fit: contain;
+.pictureContainer {
+  width: 100%;
+  height: calc(100% - 32px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture {
+  position: relative;
+}
+
+.description {
+  margin: 16px;
+  text-align: center;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.author {
+  font-size: 14px;
+}
+
+/* PICTURES */
+
+#id0 {
+  max-width: 622px;
+  width: 100%;
+  max-height: 1000px;
+  height: 100%;
+  background: #d2cec2;
+}
+
+.figure {
+  position: absolute;
+  background-size: contain;
+}
+
+.fig0 {
+  top: 15%;
+  left: 20%;
+  max-width: 250px;
+  width: 100%;
+  max-height: 250px;
+  height: 100%;
+  background-image: url('/src/pictures/pict0/fig0.svg');
+}
+
+.fig1 {
+  top: 65%;
+  left: 60%;
+  max-width: 100px;
+  width: 100%;
+  max-height: 100px;
+  height: 100%;
+  transform: rotate(-12deg);
+  background-image: url('/src/pictures/pict0/fig1.svg');
 }
 
 @media screen and (max-width: 768px) {

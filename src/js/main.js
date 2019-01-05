@@ -161,25 +161,28 @@ const pictures = [
     backgorundColor: '#d2cec2',
     rectangles: [
       {
-        x: 380,
+        x: 200,
         y: 400,
-        width: 350,
-        height: 350,
+        width: 550,
+        height: 550,
         fillColor: '#242424',
         rotate: null,
         speed: 10,
       },
       {
-        x: 630,
-        y: 830,
-        width: 200,
-        height: 200,
+        x: 530,
+        y: 1060,
+        width: 400,
+        height: 400,
         fillColor: '#a73a39',
-        rotate: '-15',
+        rotate: '-12',
         speed: 20,
       },
     ],
   },
+  {
+
+  }
 ]
 
 

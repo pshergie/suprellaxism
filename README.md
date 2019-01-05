@@ -1,8 +1,10 @@
 # suprelaxism
 
-- [x] Parallax
+- [ ] Parallax
 - [x] Picture proportions
 - [x] Gyroscope move detection
+- [x] SVG approach
+- [ ] Build with Gulp
 - [ ] Smooth gyroscope animations
 - [ ] Gallery
 - [ ] Picture picker
