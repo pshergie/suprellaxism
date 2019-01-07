@@ -112,8 +112,12 @@ body {
     max-height: calc(100% - 32px);
   }
 
-  #cvs {
-    max-height: calc(100vh - 60px)
+  .pictureContainer {
+    flex-direction: column;
+  }
+
+  .description {
+    margin-top: 0;
   }
 }
 

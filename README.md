@@ -5,8 +5,9 @@
 - [x] Gyroscope move detection
 - [x] SVG approach
 - [x] Build with Gulp
-- [ ] Smooth gyroscope animations
+- [x] Smooth gyroscope animations
 - [ ] Gallery
+- [ ] Mobile version
 - [ ] Picture picker
 - [ ] Skew pictures with mouse
 - [ ] Add at least 16 pictures
