@@ -55,7 +55,7 @@ class Picture {
         requestAnimationFrame(() => this.moveObjects({
           clientX,
           clientY,
-          gyro: true,
+          isGyro: true,
         }));
       }, { passive: true });
     }
@@ -90,31 +90,24 @@ class Picture {
     })
   }
 
+  findCoordinates(figure, e, factor) {
+    return {
+      xPos: e.isGyro
+        ? -e.clientX * figure.speed / factor
+        : (this.x - e.clientX) * figure.speed / factor,
+      yPos: e.isGyro
+        ? -e.clientY * figure.speed / factor
+        : (this.y - e.clientY) * figure.speed / factor,
+    }
+  }
+
   moveObjects(e) {
-    const factor = e.gyro ? 700 : 300; // more = slower
+    const factor = e.isGyro ? 700 : 300; // more = slower
 
-    let xPos, yPos;
-
-    if (e.gyro) {
-      this.figures.forEach(fig => {
-        xPos = -e.clientX * fig.speed / factor;
-        yPos = -e.clientY * fig.speed / factor;
-      });
-    }
-    else {
-      if (!this.x && !this.y) {
-        this.x = e.clientX;
-        this.y = e.clientY;
-        return;
-      }
-
-      this.figures.forEach(fig => {
-        xPos = (this.x - e.clientX) * fig.speed / factor;
-        yPos = (this.y - e.clientY) * fig.speed / factor;
-      });
-    }
-
-    fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) rotate(${fig.rotate || 0}deg)`;
+    this.figures.forEach(fig => {
+      const { xPos, yPos } = this.findCoordinates(fig, e, factor);
+      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) rotate(${fig.rotate || 0}deg)`;
+    });
   }
 }
 
