@@ -78,6 +78,7 @@ body {
 .figure {
   position: absolute;
   background-size: contain;
+  will-change: transform;
 }
 
 .fig0 {
