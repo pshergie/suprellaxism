@@ -1,4 +1,4 @@
-# suprelaxism
+# suprellaxism
 
 - [x] Parallax
 - [x] Picture proportions
@@ -6,8 +6,9 @@
 - [x] SVG approach
 - [x] Build with Gulp
 - [x] Smooth gyroscope animations
-- [ ] Gallery
+- [x] Gallery
+- [x] Picture picker
+- [ ] Fix shift bug
 - [ ] Mobile version
-- [ ] Picture picker
-- [ ] Skew pictures with mouse
-- [ ] Add at least 16 pictures
+- [ ] Skew mode
+- [ ] Add at least 8 pictures

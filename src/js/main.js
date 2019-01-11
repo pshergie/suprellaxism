@@ -1,31 +1,35 @@
 const pictureList = [
   {
     id: 'id0',
-    width: 622,
-    height: 1000,
     author: 'Kazimir Malevich',
     date: '1915',
     description: 'Red square and black square',
     figures: [
-      {
-        name: 'fig0',
-        speed: 10,
-      },
-      {
-        name: 'fig1',
-        speed: 20,
-        rotate: '-12',
-      },
+      { speed: 10 },
+      { speed: 20, rotate: -12 },
     ],
-  }
+  },
+  {
+    id: 'id1',
+    author: 'Nadezhda Udaltsova',
+    date: '1916',
+    description: 'Unnamed',
+    figures: [
+      { speed: 10 },
+      { speed: 25 },
+      { speed: 25 },
+      { speed: 15 },
+      { speed: 10 },
+    ],
+  },
 ];
 
-const picturesContainer = document.getElementsByClassName('pictures')[0];
+const gallery = document.getElementsByClassName('gallery')[0];
 
-picturesContainer.addEventListener('click', (e) => {
-  if (e.target.className === 'picture') {
-    console.log(e.target);
-    // new Picture();
+gallery.addEventListener('click', (e) => {
+  if (e.target.parentElement.className === 'previewContainer') {
+    const index = parseInt(e.target.parentElement.id, 10);
+    new Picture(pictureList[index]);
   }
 });
 
@@ -113,4 +117,5 @@ class Picture {
   }
 }
 
+// Default init with first picture
 new Picture(pictureList[0]);

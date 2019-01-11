@@ -47,10 +47,6 @@ body {
   align-items: center;
 }
 
-.picture {
-  position: relative;
-}
-
 .description {
   margin: 16px;
   text-align: center;
@@ -67,12 +63,13 @@ body {
 
 /* PICTURES */
 
-#id0 {
+.picture {
+  position: relative;
   max-width: 600px;
   width: 100%;
   max-height: 600px;
   height: 100%;
-  background: #d2cec2;
+  font-size: 0;
 }
 
 .figure {
@@ -81,17 +78,21 @@ body {
   will-change: transform;
 }
 
-.fig0 {
+#id0 {
+  background: #d2cec2;
+}
+
+#id0 .fig0 {
   top: 15%;
   left: 20%;
   max-width: 200px;
   width: 40vw;
   max-height: 200px;
   height: 40vw;
-  background-image: url('/src/pictures/pict0/fig0.svg');
+  background-image: url('/src/pictures/pic0/fig0.svg');
 }
 
-.fig1 {
+#id0 .fig1 {
   top: 56%;
   left: 47%;
   max-width: 120px;
@@ -99,18 +100,80 @@ body {
   max-height: 120px;
   height: 30vw;
   transform: rotate(-12deg);
-  background-image: url('/src/pictures/pict0/fig1.svg');
+  background-image: url('/src/pictures/pic0/fig1.svg');
+}
+
+#id1 {
+  background: #d1ccc4;
+}
+
+#id1 .fig0 {
+  top: 5%;
+  left: 43%;
+  width: 190px;
+  height: 202px;
+  /* max-width: 190px; */
+  /* max-height: 202px; */
+  background-image: url('/src/pictures/pic1/fig0.svg');
+  z-index: 1;
+}
+
+#id1 .fig1 {
+  top: 21%;
+  left: 24%;
+  width: 241px;
+  height: 136px;
+  /* max-width: 190px; */
+  /* max-height: 202px; */
+  background-image: url('/src/pictures/pic1/fig1.svg');
+  z-index: 3;
+}
+
+#id1 .fig2 {
+  top: 39%;
+  left: 23%;
+  width: 255px;
+  height: 153px;
+  /* max-width: 190px; */
+  /* max-height: 202px; */
+  background-image: url('/src/pictures/pic1/fig2.svg');
+  z-index: 3;
+}
+
+#id1 .fig3 {
+  width: 238px;
+  height: 436px;
+  top: 17%;
+  left: 23%;
+  /* max-width: 190px; */
+  /* max-height: 202px; */
+  background-image: url('/src/pictures/pic1/fig3.svg');
+  z-index: 2;
+}
+
+#id1 .fig4 {
+  top: 67%;
+  left: 17%;
+  width: 235px;
+  height: 154px;
+  /* max-width: 190px; */
+  /* max-height: 202px; */
+  background-image: url('/src/pictures/pic1/fig4.svg');
+  z-index: 1;
 }
 
 /* GALLERY */
 
 .gallery {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-top: -16px;
 }
 
 .previewContainer {
+  width: 250px;
+  margin: 0 8px;
   cursor: pointer;
 }
 
@@ -132,6 +195,10 @@ body {
 
 #pre0 {
   background-image: url('/src/previews/pre0.svg');
+}
+
+#pre1 {
+  background-image: url('/src/previews/pre1.svg');
 }
 
 /* MEDIA QUERIES */
