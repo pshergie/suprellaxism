@@ -1,6 +1,8 @@
 const pictureList = [
   {
     id: 'id0',
+    width: 622,
+    height: 1000,
     author: 'Kazimir Malevich',
     date: '1915',
     description: 'Red square and black square',

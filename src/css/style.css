@@ -68,9 +68,9 @@ body {
 /* PICTURES */
 
 #id0 {
-  max-width: 622px;
+  max-width: 600px;
   width: 100%;
-  max-height: 1000px;
+  max-height: 600px;
   height: 100%;
   background: #d2cec2;
 }
@@ -84,23 +84,57 @@ body {
 .fig0 {
   top: 15%;
   left: 20%;
-  max-width: 250px;
-  width: 100%;
-  max-height: 250px;
-  height: 100%;
+  max-width: 200px;
+  width: 40vw;
+  max-height: 200px;
+  height: 40vw;
   background-image: url('/src/pictures/pict0/fig0.svg');
 }
 
 .fig1 {
-  top: 65%;
-  left: 60%;
-  max-width: 100px;
-  width: 100%;
-  max-height: 100px;
-  height: 100%;
+  top: 56%;
+  left: 47%;
+  max-width: 120px;
+  width: 30vw;
+  max-height: 120px;
+  height: 30vw;
   transform: rotate(-12deg);
   background-image: url('/src/pictures/pict0/fig1.svg');
 }
+
+/* GALLERY */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -16px;
+}
+
+.previewContainer {
+  cursor: pointer;
+}
+
+.preview {
+  width: 250px;
+  height: 250px;
+}
+
+.previewName {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.previewAuthor {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+#pre0 {
+  background-image: url('/src/previews/pre0.svg');
+}
+
+/* MEDIA QUERIES */
 
 @media screen and (max-width: 768px) {
   .title {
