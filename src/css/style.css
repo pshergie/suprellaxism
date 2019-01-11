@@ -20,7 +20,7 @@ body {
   height: 100vh;
   margin: 0;
   padding: 16px;
-  background: black;
+  background: url('/src/pictures/bg/curls.png');
   color: white;
   font-family: 'B612 Mono', monospace;
 }
