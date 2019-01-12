@@ -112,7 +112,7 @@ class Picture {
   }
 
   moveObjects(e) {
-    const factor = e.isGyro ? 700 : 300; // more = slower
+    const factor = e.isGyro ? 800 : 300; // more = slower
 
     if (!e.isGyro && !this.x && !this.y) {
       this.x = e.clientX;
