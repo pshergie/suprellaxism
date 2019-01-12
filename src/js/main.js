@@ -110,6 +110,12 @@ class Picture {
   moveObjects(e) {
     const factor = e.isGyro ? 700 : 300; // more = slower
 
+    if (!e.isGyro && !this.x && !this.y) {
+      this.x = e.clientX;
+      this.y = e.clientY;
+      return;
+    }
+
     this.figures.forEach(fig => {
       const { xPos, yPos } = this.findCoordinates(fig, e, factor);
       fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) rotate(${fig.rotate || 0}deg)`;
@@ -118,4 +124,4 @@ class Picture {
 }
 
 // Default init with first picture
-new Picture(pictureList[0]);
+new Picture(pictureList[1]);
