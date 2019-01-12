@@ -10,20 +10,23 @@
 </head>
 <body>
   <h1 class="title">Suprellaxism gallery</h1>
-  <!-- <div class="points">x: <span id="xPoint">0</span> y: <span id="yPoint">0</span></div> -->
-  <ul class="pictures">
-    <li class="pictureContainer">
-      <div class="description">
-        <p class="name">«Red square and black square»</p>
-        <p class="author">Kazimir Malevich, 1915</p>
+  <div class="pictures"></div>
+  <ul class="gallery">
+    <li id="0" class="previewContainer">
+      <img width="250" height="250" srcset="/src/previews/pre0@2x.png 2x" src="/src/previews/pre0@1x.png" alt="Red square and black square">
+      <div class="previewDescription">
+        <p class="previewName">«Red square and black square»</p>
+        <p class="previewAuthor">Kazimir Malevich, 1915</p>
       </div>
-      <div id="id0" class="picture">
-        <div class="fig0 figure"></div>
-        <div class="fig1 figure"></div>
+    </li>
+    <li id="1" class="previewContainer">
+      <img width="250" height="250" srcset="/src/previews/pre1@2x.png 2x" src="/src/previews/pre1@1x.png" alt="painting by Nadezhda Udaltsova">
+      <div class="previewDescription">
+        <p class="previewName">«Unnamed»</p>
+        <p class="previewAuthor">Nadezhda Udaltsova, 1916</p>
       </div>
     </li>
   </ul>
-  <div id="error"></div>
   <script src="/suprellaxism/js/main-min.js"></script>
 </body>
 </html>

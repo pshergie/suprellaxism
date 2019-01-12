@@ -20,7 +20,7 @@ body {
   height: 100vh;
   margin: 0;
   padding: 16px;
-  background: url('/src/pictures/bg/curls.png');
+  background: url('/src/bg/curls.png');
   color: white;
   font-family: 'B612 Mono', monospace;
 }
@@ -114,8 +114,8 @@ body {
   left: 43%;
   max-width: 190px;
   max-height: 202px;
-  width: 40vw;
-  height: 40vw;
+  width: 47vw;
+  height: 100%;
   background-image: url('/src/pictures/pic1/fig0.svg');
   z-index: 1;
 }
@@ -125,8 +125,8 @@ body {
   left: 24%;
   max-width: 241px;
   max-height: 136px;
-  width: 40vw;
-  height: 40vw;
+  width: 47vw;
+  height: 100%;
   background-image: url('/src/pictures/pic1/fig1.svg');
   z-index: 3;
 }
@@ -136,8 +136,8 @@ body {
   left: 23%;
   max-width: 255px;
   max-height: 153px;
-  width: 40vw;
-  height: 40vw;
+  width: 60vw;
+  height: 60vw;
   background-image: url('/src/pictures/pic1/fig2.svg');
   z-index: 3;
 }
@@ -146,9 +146,9 @@ body {
   top: 17%;
   left: 23%;
   max-width: 238px;
-  max-height: 436px;
-  width: 40vw;
-  height: 40vw;
+  max-height: 388px;
+  width: 60vw;
+  height: 100%;
   background-image: url('/src/pictures/pic1/fig3.svg');
   z-index: 2;
 }
@@ -158,8 +158,8 @@ body {
   left: 17%;
   max-width: 235px;
   max-height: 154px;
-  width: 40vw;
-  height: 40vw;
+  width: 60vw;
+  height: 100%;
   background-image: url('/src/pictures/pic1/fig4.svg');
   z-index: 1;
 }
