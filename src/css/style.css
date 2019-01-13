@@ -84,16 +84,16 @@ body {
 }
 
 #id0 .fig0 {
-  top: 15%;
-  left: 20%;
+  top: 90px;
+  left: 90px;
   width: 200px;
   height: 200px;
   background-image: url('/src/pictures/pic0/fig0.svg');
 }
 
 #id0 .fig1 {
-  top: 56%;
-  left: 47%;
+  top: 336px;
+  left: 212px;
   width: 120px;
   height: 120px;
   transform: rotate(-12deg);
@@ -105,8 +105,8 @@ body {
 }
 
 #id1 .fig0 {
-  top: 5%;
-  left: 43%;
+  top: 30px;
+  left: 194px;
   width: 190px;
   height: 202px;
   background-image: url('/src/pictures/pic1/fig0.svg');
@@ -114,8 +114,8 @@ body {
 }
 
 #id1 .fig1 {
-  top: 21%;
-  left: 24%;
+  top: 126px;
+  left: 108px;
   width: 241px;
   height: 136px;
   background-image: url('/src/pictures/pic1/fig1.svg');
@@ -123,8 +123,8 @@ body {
 }
 
 #id1 .fig2 {
-  top: 39%;
-  left: 23%;
+  top: 234px;
+  left: 104px;
   width: 255px;
   height: 153px;
   background-image: url('/src/pictures/pic1/fig2.svg');
@@ -132,8 +132,8 @@ body {
 }
 
 #id1 .fig3 {
-  top: 17%;
-  left: 23%;
+  top: 102px;
+  left: 104px;
   width: 238px;
   height: 388px;
   background-image: url('/src/pictures/pic1/fig3.svg');
@@ -141,8 +141,8 @@ body {
 }
 
 #id1 .fig4 {
-  top: 67%;
-  left: 17%;
+  top: 402px;
+  left: 77px;
   width: 235px;
   height: 154px;
   background-image: url('/src/pictures/pic1/fig4.svg');
@@ -208,13 +208,26 @@ body {
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 414px) {
+  .name {
+    margin-bottom: 8px;
+  }
+
+  .author {
+    margin-top: 8px;
+  }
+
   .picture {
     margin: 0 -16px;
+  }
+
+  .gallery {
+    margin-top: -32px;
   }
 }
 
 @media screen and (max-width: 450px) {
   .picture {
+    margin-top: -100px;
     transform: scale(0.7);
   }
 }
