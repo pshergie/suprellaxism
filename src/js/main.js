@@ -6,7 +6,7 @@ const pictureList = [
     description: 'Red square and black square',
     figures: [
       { speed: 10 },
-      { speed: 20, rotate: -12 },
+      { speed: 20 },
     ],
   },
   {
@@ -25,6 +25,8 @@ const pictureList = [
 ];
 
 const gallery = document.getElementsByClassName('gallery')[0];
+const canvas = document.getElementsByClassName('pictures')[0];
+const checkbox = document.getElementById('mode');
 
 gallery.addEventListener('click', (e) => {
   if (e.target.parentElement.className === 'previewContainer') {
@@ -39,17 +41,19 @@ gallery.addEventListener('click', (e) => {
 
 class Picture {
   constructor(pic) {
-    this.canvas = document.getElementsByClassName('pictures')[0];
     this.figures = new Array(pic.figures.length);
     this.x = 0;
     this.y = 0;
 
     this.drawPicture(pic);
 
+    this.picture = document.getElementById(pic.id);
+
+    this.parallax = this.parallax.bind(this);
+    this.tiltPicture = this.tiltPicture.bind(this);
+
     // event listener
-    window.addEventListener('mousemove', (e) => {
-      requestAnimationFrame(() =>this.moveObjects(e));
-    }, { passive: true });
+    window.addEventListener('mousemove', this.parallax, { passive: true });
 
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', (e) => {
@@ -69,10 +73,23 @@ class Picture {
         }));
       }, { passive: true });
     }
+
+    // Mode change
+    checkbox.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        this.picture.style.overflow = 'visible';
+        window.removeEventListener('mousemove', this.parallax);
+        this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
+      } else {
+        this.picture.style.overflow = 'hidden';
+        this.picture.removeEventListener('mousemove', this.tiltPicture);
+        window.addEventListener('mousemove', this.parallax, { passive: true });
+      }
+    })
   }
 
   drawPicture(pic) {
-    this.canvas.innerHTML = `
+    canvas.innerHTML = `
       <li class="pictureContainer">
         <div class="description">
           <p class="name">«${pic.description}»</p>
@@ -82,8 +99,7 @@ class Picture {
           ${pic.figures.map((fig, index) => (
             `<div
               class="fig${index} figure"
-              data-speed="${fig.speed}"
-              data-rotate="${fig.rotate ? fig.rotate : ''}"></div>`
+              data-speed="${fig.speed}"></div>`
           ))}
         </div>
       </li>
@@ -111,6 +127,10 @@ class Picture {
     }
   }
 
+  parallax(e) {
+    requestAnimationFrame(() => this.moveObjects(e));
+  }
+
   moveObjects(e) {
     const factor = e.isGyro ? 800 : 300; // more = slower
 
@@ -122,8 +142,25 @@ class Picture {
 
     this.figures.forEach(fig => {
       const { xPos, yPos } = this.findCoordinates(fig, e, factor);
-      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) rotate(${fig.rotate || 0}deg)`;
+      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
     });
+  }
+
+  tiltPicture(e) {
+    const { clientX, clientY } = e;
+
+    if (!this.x && !this.y) {
+      this.x = clientX;
+      this.y = clientY;
+      return;
+    }
+
+    const multiplier = 15;
+
+    const xRot = (this.y - clientY) / multiplier;
+    const yRot = (this.x - clientX) / multiplier;
+
+    this.picture.style.transform = `perspective(1000px) rotateX(${-xRot}deg) rotateY(${-yRot}deg)`;
   }
 }
 

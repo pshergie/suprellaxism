@@ -8,6 +8,6 @@
 - [x] Gallery
 - [x] Picture picker
 - [x] Mobile version
-- [ ] Skew mode
+- [ ] Tilt mode
 - [ ] Navigation arrows
 - [ ] Add at least 8 pictures
