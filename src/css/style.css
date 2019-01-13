@@ -44,6 +44,10 @@ body {
   cursor: pointer;
 }
 
+.checkbox:disabled + label:before {
+  background: #eee;
+}
+
 .checkbox + label:before {
   content: '';
   position: absolute;
@@ -86,7 +90,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-top: 32px; */
 }
 
 .pictureContainer {
@@ -121,9 +124,13 @@ body {
   font-size: 0;
   box-shadow: 0 0px 45px rgba(0, 0, 0, 0.8);
   transform-style: preserve-3d;
-  transform: perspective(700px);
-  will-change: transform
-  /* overflow: hidden; */
+  transform: perspective(1000px);
+  will-change: transform;
+  overflow: hidden;
+}
+
+.picture.tilt {
+  overflow: visible;
 }
 
 .figure {
@@ -132,6 +139,8 @@ body {
   background-repeat: no-repeat;
   will-change: transform;
 }
+
+/* ID 0 */
 
 #id0 {
   background: #d2cec2;
@@ -142,8 +151,15 @@ body {
   left: 90px;
   width: 200px;
   height: 200px;
-  /* transform: translateZ(50px); */
   background-image: url('/src/pictures/pic0/fig0.svg');
+}
+
+#id0.tilt .fig0 {
+  transform: translateZ(50px) !important;
+}
+
+#id0.tilt .fig1 {
+  transform: translateZ(80px) !important;
 }
 
 #id0 .fig1 {
@@ -151,9 +167,10 @@ body {
   left: 245px;
   width: 120px;
   height: 120px;
-  /* transform: translateZ(80px) rotate(-12deg); */
   background-image: url('/src/pictures/pic0/fig1.svg');
 }
+
+/* ID 1 */
 
 #id1 {
   background: #d1ccc4;

@@ -8,6 +8,9 @@
 - [x] Gallery
 - [x] Picture picker
 - [x] Mobile version
-- [ ] Tilt mode
+- [x] Tilt mode
+- [x] Mode switcher
+- [ ] Super mode
+- [ ] Improve tilt
 - [ ] Navigation arrows
 - [ ] Add at least 8 pictures

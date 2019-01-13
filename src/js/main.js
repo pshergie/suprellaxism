@@ -49,43 +49,49 @@ class Picture {
 
     this.picture = document.getElementById(pic.id);
 
+    this.deviceMotion = this.deviceMotion.bind(this);
     this.parallax = this.parallax.bind(this);
     this.tiltPicture = this.tiltPicture.bind(this);
+    this.setMode = this.setMode.bind(this);
 
-    // event listener
-    window.addEventListener('mousemove', this.parallax, { passive: true });
-
-    if (window.DeviceMotionEvent) {
-      window.addEventListener('devicemotion', (e) => {
-        const beta = e.rotationRate.beta.toPrecision(2)
-        const alpha = e.rotationRate.alpha.toPrecision(2);
-
-        this.x += parseFloat(beta);
-        this.y += parseFloat(alpha);
-
-        const clientX = this.x;
-        const clientY = this.y;
-
-        requestAnimationFrame(() => this.moveObjects({
-          clientX,
-          clientY,
-          isGyro: true,
-        }));
-      }, { passive: true });
-    }
+    this.setMode({ target: { checked: checkbox.checked } });
 
     // Mode change
-    checkbox.addEventListener('change', (e) => {
-      if (e.target.checked) {
-        this.picture.style.overflow = 'visible';
-        window.removeEventListener('mousemove', this.parallax);
-        this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
-      } else {
-        this.picture.style.overflow = 'hidden';
-        this.picture.removeEventListener('mousemove', this.tiltPicture);
-        window.addEventListener('mousemove', this.parallax, { passive: true });
-      }
-    })
+    checkbox.addEventListener('change', this.setMode);
+  }
+
+  setMode(e) {
+    if (e.target.checked) {
+      this.picture.classList.add('tilt');
+
+      window.removeEventListener('mousemove', this.parallax);
+      this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
+    }
+    else {
+      this.picture.classList.remove('tilt');
+
+      this.picture.removeEventListener('mousemove', this.tiltPicture);
+      window.addEventListener('mousemove', this.parallax, { passive: true });
+
+      if (window.DeviceMotionEvent) window.addEventListener('devicemotion', this.deviceMotion, { passive: true });
+    }
+  }
+
+  deviceMotion(e) {
+    const beta = e.rotationRate.beta.toPrecision(2)
+    const alpha = e.rotationRate.alpha.toPrecision(2);
+
+    this.x += parseFloat(beta);
+    this.y += parseFloat(alpha);
+
+    const clientX = this.x;
+    const clientY = this.y;
+
+    requestAnimationFrame(() => this.moveObjects({
+      clientX,
+      clientY,
+      isGyro: true,
+    }));
   }
 
   drawPicture(pic) {
