@@ -11,7 +11,8 @@ TODOs
 - [x] Mobile version
 - [x] Tilt mode
 - [x] Mode switcher
-- [ ] Super mode
+- [x] Super mode
 - [ ] Improve tilt
+- [ ] Fix z-index bug
 - [ ] Navigation arrows
 - [ ] Add at least 8 pictures

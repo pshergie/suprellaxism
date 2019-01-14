@@ -163,9 +163,7 @@ class Picture {
         </div>
         <div id="${pic.id}" class="picture">
           ${pic.figures.map((fig, index) => (
-            `<div
-              class="fig${index} figure"
-              data-speed="${fig.speed}"></div>`
+            `<div class="fig${index} figure"></div>`
           ))}
         </div>
       </li>
@@ -176,7 +174,7 @@ class Picture {
 
       this.figures[index] = {
         el,
-        speed: el.dataset.speed,
+        speed: fig.speed,
       }
     })
   }
@@ -225,6 +223,9 @@ class Picture {
     const xRot = (this.y - clientY) / multiplier;
     const yRot = (this.x - clientX) / multiplier;
 
+    this.figures.forEach(fig => {
+      fig.el.style.transform = `translateZ(${fig.speed * 3}px)`;
+    });
     this.picture.style.transform = `perspective(1000px) rotateX(${-xRot}deg) rotateY(${-yRot}deg)`;
   }
 }
