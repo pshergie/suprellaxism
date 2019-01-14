@@ -26,10 +26,67 @@ body {
   text-align: center;
 }
 
-.toggle {
+.toggles {
+  display: flex;
+  justify-content: center;
   margin: 0 auto 24px;
   text-align: center;
 }
+
+.toggle {
+  display: flex;
+  margin: 0 16px;
+}
+
+.label {
+  margin-right: 10px;
+}
+
+#super {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  margin: 10px 0 0 20px;
+}
+
+#super + label {
+  position: relative;
+  cursor: pointer;
+}
+
+#super + label:before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+  transition: .2s;
+}
+
+#super + label:after {
+  content: '✔';
+  color: #222;
+  position: absolute;
+  top: 0px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  transition: .2s;
+  opacity: 0;
+}
+
+#super:checked + label:after {
+  opacity: 1;
+}
+
+#super:focus + label:before {
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 2px rgba(0, 217, 255, .7);
+}
+
 
 .checkbox {
   position: absolute;
@@ -42,6 +99,10 @@ body {
   position: relative;
   padding: 0 0 0 60px;
   cursor: pointer;
+}
+
+.checkbox:disabled + label {
+  cursor: not-allowed;
 }
 
 .checkbox:disabled + label:before {
@@ -155,11 +216,11 @@ body {
 }
 
 #id0.tilt .fig0 {
-  transform: translateZ(50px) !important;
+  transform: translateZ(50px);
 }
 
 #id0.tilt .fig1 {
-  transform: translateZ(80px) !important;
+  transform: translateZ(80px);
 }
 
 #id0 .fig1 {

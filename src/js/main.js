@@ -27,6 +27,7 @@ const pictureList = [
 const gallery = document.getElementsByClassName('gallery')[0];
 const canvas = document.getElementsByClassName('pictures')[0];
 const checkbox = document.getElementById('mode');
+const superModeToggle = document.getElementById('super');
 
 gallery.addEventListener('click', (e) => {
   if (e.target.parentElement.className === 'previewContainer') {
@@ -52,16 +53,75 @@ class Picture {
     this.deviceMotion = this.deviceMotion.bind(this);
     this.parallax = this.parallax.bind(this);
     this.tiltPicture = this.tiltPicture.bind(this);
+    this.parallaxAndTilt = this.parallaxAndTilt.bind(this);
     this.setMode = this.setMode.bind(this);
+    this.onSuperModeToggle = this.onSuperModeToggle.bind(this);
 
     this.setMode({ target: { checked: checkbox.checked } });
 
     // Mode change
     checkbox.addEventListener('change', this.setMode);
+
+    // Super mode toggle
+    superModeToggle.addEventListener('change', this.onSuperModeToggle);
+  }
+
+  onSuperModeToggle(e) {
+    if (e.target.checked) {
+      checkbox.disabled = true;
+      this.setMode({ super: 'on' });
+    }
+    else {
+      checkbox.disabled = false;
+      this.setMode({ super: 'off' });
+    }
+  }
+
+  parallaxAndTilt(e) {
+    const { clientX, clientY } = e;
+    const factor = 75; // more = slower
+    const multiplier = 15;
+
+    if (!this.x && !this.y) {
+      this.x = clientX;
+      this.y = clientY;
+      return;
+    }
+
+    this.figures.forEach(fig => {
+      const { xPos, yPos } = this.findCoordinates(fig, e, factor);
+      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 50px)`;
+    });
+
+    const xRot = (this.y - clientY) / multiplier;
+    const yRot = (this.x - clientX) / multiplier;
+
+    this.picture.style.transform = `perspective(1000px) rotateX(${-xRot}deg) rotateY(${-yRot}deg)`;
   }
 
   setMode(e) {
-    if (e.target.checked) {
+    if (e.super === 'on') {
+      if (checkbox.checked) {
+        this.picture.removeEventListener('mousemove', this.tiltPicture);
+      }
+      else {
+        this.picture.classList.add('tilt');
+        window.removeEventListener('mousemove', this.parallax);
+      }
+      this.picture.addEventListener('mousemove', this.parallaxAndTilt);
+    }
+    else if (e.super === 'off') {
+      if (checkbox.checked) {
+        window.removeEventListener('mousemove', this.parallax);
+        this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
+      }
+      else {
+        this.picture.classList.add('tilt');
+        this.picture.removeEventListener('mousemove', this.tiltPicture);
+      }
+      this.picture.removeEventListener('mousemove', this.parallaxAndTilt);
+    }
+    else if (e.target.checked) {
       this.picture.classList.add('tilt');
 
       window.removeEventListener('mousemove', this.parallax);
@@ -117,7 +177,6 @@ class Picture {
       this.figures[index] = {
         el,
         speed: el.dataset.speed,
-        rotate: el.dataset.rotate,
       }
     })
   }

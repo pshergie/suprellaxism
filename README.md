@@ -1,5 +1,6 @@
 # suprellaxism
 
+TODOs
 - [x] Parallax
 - [x] Picture proportions
 - [x] SVG approach
