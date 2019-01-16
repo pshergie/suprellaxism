@@ -98,7 +98,8 @@ class Picture {
 
     this.figures.forEach(fig => {
       const { xPos, yPos } = this.findCoordinates(fig, e, factor);
-      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 50px)`;
+      const zIndex = Math.ceil(fig.speed / 2);
+      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, ${50 + zIndex}px)`;
     });
 
     const [cx, cy] = this.findCenterCoordinates();

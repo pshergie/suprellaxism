@@ -14,7 +14,8 @@ TODOs
 - [x] Super mode
 - [x] Improve tilt
 - [x] Reset button
-- [ ] Improve translateY
-- [ ] Fix z-index bug
+- [x] Fix translateY lag
+- [x] Fix z-index bug
+- [ ] Gyro tilt
 - [ ] Navigation arrows
 - [ ] Add at least 8 pictures
