@@ -45,6 +45,7 @@ class Picture {
   constructor(pic) {
     this.figures = new Array(pic.figures.length);
     this.perspective = 1000;
+    this.multiplier = 15;
     this.x = 0;
     this.y = 0;
 
@@ -88,7 +89,6 @@ class Picture {
   parallaxAndTilt(e) {
     const { clientX, clientY } = e;
     const factor = 75; // more = slower
-    const multiplier = 15;
 
     if (!this.x && !this.y) {
       this.x = clientX;
@@ -102,12 +102,7 @@ class Picture {
       fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, ${50 + zIndex}px)`;
     });
 
-    const [cx, cy] = this.findCenterCoordinates();
-
-    const xRot = -(cy - clientY) / multiplier;
-    const yRot = (cx - clientX) / multiplier;
-
-    this.picture.style.transform = `perspective(1000px) rotateX(${xRot}deg) rotateY(${yRot}deg)`;
+    this.setTransform(e);
   }
 
   setMode(e) {
@@ -145,7 +140,9 @@ class Picture {
       this.picture.removeEventListener('mousemove', this.tiltPicture);
       window.addEventListener('mousemove', this.parallax, { passive: true });
 
-      if (window.DeviceMotionEvent) window.addEventListener('devicemotion', this.deviceMotion, { passive: true });
+      if (window.DeviceMotionEvent) {
+        window.addEventListener('devicemotion', this.deviceMotion, { passive: true });
+      }
     }
   }
 
@@ -228,18 +225,20 @@ class Picture {
   }
 
   tiltPicture(e) {
-    const { clientX, clientY } = e;
-
-    const multiplier = 15;
-
-    const [cx, cy] = this.findCenterCoordinates();
-
-    const xRot = -(cy - clientY) / multiplier;
-    const yRot = (cx - clientX) / multiplier;
+    this.setTransform(e);
 
     this.figures.forEach(fig => {
       fig.el.style.transform = `translateZ(${fig.speed * 3}px)`;
     });
+  }
+
+  setTransform(e) {
+    const { clientX, clientY } = e;
+
+    const [cx, cy] = this.findCenterCoordinates();
+
+    const xRot = -(cy - clientY) / this.multiplier;
+    const yRot = (cx - clientX) / this.multiplier;
 
     this.picture.style.transform = `
       perspective(${this.perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg)
@@ -248,9 +247,10 @@ class Picture {
 
   reset() {
     this.picture.style.transform =
-      this.picture.style.transform.indexOf('scale(0.7)') !== 1
+      this.picture.style.transform.indexOf('scale(0.7)') >= 0
         ? `perspective(${this.perspective}px) scale(0.7)`
         : `perspective(${this.perspective}px)`;
+
     this.figures.forEach(fig => fig.el.style.transform = 'null');
     this.x = this.y = 0;
   }
