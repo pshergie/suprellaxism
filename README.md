@@ -12,7 +12,8 @@ TODOs
 - [x] Tilt mode
 - [x] Mode switcher
 - [x] Super mode
-- [ ] Improve tilt
+- [x] Improve tilt
+- [ ] Reset button
 - [ ] Fix z-index bug
 - [ ] Navigation arrows
 - [ ] Add at least 8 pictures

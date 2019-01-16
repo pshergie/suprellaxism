@@ -215,14 +215,6 @@ body {
   background-image: url('/src/pictures/pic0/fig0.svg');
 }
 
-/* #id0.tilt .fig0 {
-  transform: translateZ(50px);
-}
-
-#id0.tilt .fig1 {
-  transform: translateZ(80px);
-} */
-
 #id0 .fig1 {
   top: 330px;
   left: 245px;

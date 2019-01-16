@@ -57,7 +57,9 @@ class Picture {
     this.setMode = this.setMode.bind(this);
     this.onSuperModeToggle = this.onSuperModeToggle.bind(this);
 
-    this.setMode({ target: { checked: checkbox.checked } });
+    superModeToggle.checked
+      ? this.setMode({ super: 'on' })
+      : this.setMode({ target: { checked: checkbox.checked } });
 
     // Mode change
     checkbox.addEventListener('change', this.setMode);
@@ -93,10 +95,12 @@ class Picture {
       fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 50px)`;
     });
 
-    const xRot = (this.y - clientY) / multiplier;
-    const yRot = (this.x - clientX) / multiplier;
+    const [cx, cy] = this.findCenterCoordinates();
 
-    this.picture.style.transform = `perspective(1000px) rotateX(${-xRot}deg) rotateY(${-yRot}deg)`;
+    const xRot = -(cy - clientY) / multiplier;
+    const yRot = (cx - clientX) / multiplier;
+
+    this.picture.style.transform = `perspective(1000px) rotateX(${xRot}deg) rotateY(${yRot}deg)`;
   }
 
   setMode(e) {
@@ -116,8 +120,9 @@ class Picture {
         this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
       }
       else {
-        this.picture.classList.add('tilt');
+        this.picture.classList.remove('tilt');
         this.picture.removeEventListener('mousemove', this.tiltPicture);
+        window.addEventListener('mousemove', this.parallax);
       }
       this.picture.removeEventListener('mousemove', this.parallaxAndTilt);
     }
@@ -190,6 +195,12 @@ class Picture {
     }
   }
 
+  findCenterCoordinates() {
+    let cx = this.picture.offsetLeft + this.picture.offsetWidth / 2;
+    let cy = this.picture.offsetTop + this.picture.offsetHeight / 2;
+    return [cx, cy];
+  }
+
   parallax(e) {
     requestAnimationFrame(() => this.moveObjects(e));
   }
@@ -212,21 +223,17 @@ class Picture {
   tiltPicture(e) {
     const { clientX, clientY } = e;
 
-    if (!this.x && !this.y) {
-      this.x = clientX;
-      this.y = clientY;
-      return;
-    }
-
     const multiplier = 15;
 
-    const xRot = (this.y - clientY) / multiplier;
-    const yRot = (this.x - clientX) / multiplier;
+    const [cx, cy] = this.findCenterCoordinates();
+
+    const xRot = -(cy - clientY) / multiplier;
+    const yRot = (cx - clientX) / multiplier;
 
     this.figures.forEach(fig => {
       fig.el.style.transform = `translateZ(${fig.speed * 3}px)`;
     });
-    this.picture.style.transform = `perspective(1000px) rotateX(${-xRot}deg) rotateY(${-yRot}deg)`;
+    this.picture.style.transform = `perspective(1000px) rotateX(${xRot}deg) rotateY(${yRot}deg)`;
   }
 }
 
