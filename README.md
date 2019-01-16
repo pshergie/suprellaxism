@@ -13,7 +13,8 @@ TODOs
 - [x] Mode switcher
 - [x] Super mode
 - [x] Improve tilt
-- [ ] Reset button
+- [x] Reset button
+- [ ] Improve translateY
 - [ ] Fix z-index bug
 - [ ] Navigation arrows
 - [ ] Add at least 8 pictures

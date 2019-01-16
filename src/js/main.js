@@ -26,6 +26,7 @@ const pictureList = [
 
 const gallery = document.getElementsByClassName('gallery')[0];
 const canvas = document.getElementsByClassName('pictures')[0];
+const resetBtn = document.getElementsByClassName('reset')[0];
 const checkbox = document.getElementById('mode');
 const superModeToggle = document.getElementById('super');
 
@@ -43,6 +44,7 @@ gallery.addEventListener('click', (e) => {
 class Picture {
   constructor(pic) {
     this.figures = new Array(pic.figures.length);
+    this.perspective = 1000;
     this.x = 0;
     this.y = 0;
 
@@ -56,6 +58,7 @@ class Picture {
     this.parallaxAndTilt = this.parallaxAndTilt.bind(this);
     this.setMode = this.setMode.bind(this);
     this.onSuperModeToggle = this.onSuperModeToggle.bind(this);
+    this.reset = this.reset.bind(this);
 
     superModeToggle.checked
       ? this.setMode({ super: 'on' })
@@ -66,6 +69,9 @@ class Picture {
 
     // Super mode toggle
     superModeToggle.addEventListener('change', this.onSuperModeToggle);
+
+    // Reset button handler
+    resetBtn.addEventListener('click', this.reset);
   }
 
   onSuperModeToggle(e) {
@@ -233,7 +239,19 @@ class Picture {
     this.figures.forEach(fig => {
       fig.el.style.transform = `translateZ(${fig.speed * 3}px)`;
     });
-    this.picture.style.transform = `perspective(1000px) rotateX(${xRot}deg) rotateY(${yRot}deg)`;
+
+    this.picture.style.transform = `
+      perspective(${this.perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg)
+    `;
+  }
+
+  reset() {
+    this.picture.style.transform =
+      this.picture.style.transform.indexOf('scale(0.7)') !== 1
+        ? `perspective(${this.perspective}px) scale(0.7)`
+        : `perspective(${this.perspective}px)`;
+    this.figures.forEach(fig => fig.el.style.transform = 'null');
+    this.x = this.y = 0;
   }
 }
 
