@@ -153,14 +153,7 @@ class Picture {
   }
 
   deviceParallax(e) {
-    const beta = e.rotationRate.beta.toPrecision(2)
-    const alpha = e.rotationRate.alpha.toPrecision(2);
-
-    this.x += parseFloat(beta);
-    this.y += parseFloat(alpha);
-
-    const clientX = this.x;
-    const clientY = this.y;
+    const [clientX, clientY] = this.processGyro(e);
 
     requestAnimationFrame(() => this.moveObjects({
       clientX,
@@ -170,6 +163,16 @@ class Picture {
   }
 
   deviceTilt(e) {
+    const [clientX, clientY] = this.processGyro(e);
+
+    requestAnimationFrame(() => this.tiltPicture({
+      clientX,
+      clientY,
+      isGyro: true,
+    }));
+  }
+
+  processGyro(e) {
     const beta = e.rotationRate.beta.toPrecision(2)
     const alpha = e.rotationRate.alpha.toPrecision(2);
 
@@ -179,11 +182,7 @@ class Picture {
     const clientX = this.x;
     const clientY = this.y;
 
-    requestAnimationFrame(() => this.tiltPicture({
-      clientX,
-      clientY,
-      isGyro: true,
-    }));
+    return [clientX, clientY];
   }
 
   drawPicture(pic) {
