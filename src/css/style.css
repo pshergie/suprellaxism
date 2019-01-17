@@ -181,6 +181,7 @@ label {
 .name {
   font-size: 18px;
   font-weight: bold;
+  text-align: center;
 }
 
 .author {
@@ -284,6 +285,12 @@ label {
   height: 154px;
   background-image: url('/src/pictures/pic1/fig4.svg');
   z-index: 1;
+}
+
+/* ID 2 */
+
+#id1 {
+  background: #f3f3f3;
 }
 
 /* GALLERY */

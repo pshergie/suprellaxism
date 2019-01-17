@@ -3,7 +3,7 @@ const pictureList = [
     id: 'id0',
     author: 'Kazimir Malevich',
     date: '1915',
-    description: 'Red square and black square',
+    name: 'Red square and black square',
     figures: [
       { speed: 10 },
       { speed: 20 },
@@ -13,7 +13,7 @@ const pictureList = [
     id: 'id1',
     author: 'Nadezhda Udaltsova',
     date: '1916',
-    description: 'Unnamed',
+    name: 'Unnamed',
     figures: [
       { speed: 10 },
       { speed: 25 },
@@ -22,6 +22,15 @@ const pictureList = [
       { speed: 10 },
     ],
   },
+  {
+    id: 'id2',
+    author: 'Nikolaj Suetin',
+    date: '1915',
+    name: 'Suprematism',
+    figures: [
+
+    ]
+  }
 ];
 
 const gallery = document.getElementsByClassName('gallery')[0];
@@ -188,8 +197,8 @@ class Picture {
   drawPicture(pic) {
     canvas.innerHTML = `
       <li class="pictureContainer">
-        <div class="description">
-          <p class="name">«${pic.description}»</p>
+        <div class="name">
+          <p class="name">«${pic.name}»</p>
           <p class="author">${pic.author}, ${pic.date}</p>
         </div>
         <div id="${pic.id}" class="picture">

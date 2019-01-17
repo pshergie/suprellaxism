@@ -19,4 +19,4 @@ TODOs
 - [x] Gyro tilt
 - [ ] Fix figures cut bug
 - [ ] Navigation arrows
-- [ ] Add at least 8 pictures
+- [ ] Add at least 4 pictures
