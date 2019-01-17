@@ -6,7 +6,7 @@ const pictureList = [
     description: 'Red square and black square',
     figures: [
       { speed: 10 },
-      { speed: 20, rotate: -12 },
+      { speed: 20 },
     ],
   },
   {
@@ -25,6 +25,10 @@ const pictureList = [
 ];
 
 const gallery = document.getElementsByClassName('gallery')[0];
+const canvas = document.getElementsByClassName('pictures')[0];
+const resetBtn = document.getElementsByClassName('reset')[0];
+const checkbox = document.getElementById('mode');
+const superModeToggle = document.getElementById('super');
 
 gallery.addEventListener('click', (e) => {
   if (e.target.parentElement.className === 'previewContainer') {
@@ -39,40 +43,151 @@ gallery.addEventListener('click', (e) => {
 
 class Picture {
   constructor(pic) {
-    this.canvas = document.getElementsByClassName('pictures')[0];
     this.figures = new Array(pic.figures.length);
+    this.perspective = 1000;
     this.x = 0;
     this.y = 0;
 
     this.drawPicture(pic);
 
-    // event listener
-    window.addEventListener('mousemove', (e) => {
-      requestAnimationFrame(() =>this.moveObjects(e));
-    }, { passive: true });
+    this.picture = document.getElementById(pic.id);
 
-    if (window.DeviceMotionEvent) {
-      window.addEventListener('devicemotion', (e) => {
-        const beta = e.rotationRate.beta.toPrecision(2)
-        const alpha = e.rotationRate.alpha.toPrecision(2);
+    this.deviceParallax = this.deviceParallax.bind(this);
+    this.deviceTilt = this.deviceTilt.bind(this);
+    this.parallax = this.parallax.bind(this);
+    this.tiltPicture = this.tiltPicture.bind(this);
+    this.parallaxAndTilt = this.parallaxAndTilt.bind(this);
+    this.setMode = this.setMode.bind(this);
+    this.onSuperModeToggle = this.onSuperModeToggle.bind(this);
+    this.reset = this.reset.bind(this);
 
-        this.x += parseFloat(beta);
-        this.y += parseFloat(alpha);
+    superModeToggle.checked
+      ? this.setMode({ super: 'on' })
+      : this.setMode({ target: { checked: checkbox.checked } });
 
-        const clientX = this.x;
-        const clientY = this.y;
+    // Mode change
+    checkbox.addEventListener('change', this.setMode);
 
-        requestAnimationFrame(() => this.moveObjects({
-          clientX,
-          clientY,
-          isGyro: true,
-        }));
-      }, { passive: true });
+    // Super mode toggle
+    superModeToggle.addEventListener('change', this.onSuperModeToggle);
+
+    // Reset button handler
+    resetBtn.addEventListener('click', this.reset);
+  }
+
+  onSuperModeToggle(e) {
+    if (e.target.checked) {
+      checkbox.disabled = true;
+      this.setMode({ super: 'on' });
+    }
+    else {
+      checkbox.disabled = false;
+      this.setMode({ super: 'off' });
     }
   }
 
+  parallaxAndTilt(e) {
+    const { clientX, clientY } = e;
+    const factor = 75; // more = slower
+
+    if (!this.x && !this.y) {
+      this.x = clientX;
+      this.y = clientY;
+      return;
+    }
+
+    this.figures.forEach(fig => {
+      const { xPos, yPos } = this.findCoordinates(fig, e, factor);
+      const zIndex = Math.ceil(fig.speed / 2);
+      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, ${50 + zIndex}px)`;
+    });
+
+    this.setTransform(e);
+  }
+
+  setMode(e) {
+    if (e.super === 'on') {
+      if (checkbox.checked) {
+        this.picture.removeEventListener('mousemove', this.tiltPicture);
+      }
+      else {
+        this.picture.classList.add('tilt');
+        window.removeEventListener('mousemove', this.parallax);
+      }
+      this.picture.addEventListener('mousemove', this.parallaxAndTilt);
+    }
+    else if (e.super === 'off') {
+      if (checkbox.checked) {
+        window.removeEventListener('mousemove', this.parallax);
+        this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
+      }
+      else {
+        this.picture.classList.remove('tilt');
+        this.picture.removeEventListener('mousemove', this.tiltPicture);
+        window.addEventListener('mousemove', this.parallax);
+      }
+      this.picture.removeEventListener('mousemove', this.parallaxAndTilt);
+    }
+    else if (e.target.checked) {
+      this.picture.classList.add('tilt');
+
+      window.removeEventListener('mousemove', this.parallax);
+      this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
+
+      if (window.DeviceMotionEvent) {
+        window.removeEventListener('devicemotion', this.deviceParallax);
+        window.addEventListener('devicemotion', this.deviceTilt, { passive: true });
+      }
+    }
+    else {
+      this.picture.classList.remove('tilt');
+
+      this.picture.removeEventListener('mousemove', this.tiltPicture);
+      window.addEventListener('mousemove', this.parallax, { passive: true });
+
+      if (window.DeviceMotionEvent) {
+        window.removeEventListener('devicemotion', this.deviceTilt);
+        window.addEventListener('devicemotion', this.deviceParallax, { passive: true });
+      }
+    }
+  }
+
+  deviceParallax(e) {
+    const beta = e.rotationRate.beta.toPrecision(2)
+    const alpha = e.rotationRate.alpha.toPrecision(2);
+
+    this.x += parseFloat(beta);
+    this.y += parseFloat(alpha);
+
+    const clientX = this.x;
+    const clientY = this.y;
+
+    requestAnimationFrame(() => this.moveObjects({
+      clientX,
+      clientY,
+      isGyro: true,
+    }));
+  }
+
+  deviceTilt(e) {
+    const beta = e.rotationRate.beta.toPrecision(2)
+    const alpha = e.rotationRate.alpha.toPrecision(2);
+
+    this.x += parseFloat(beta);
+    this.y += parseFloat(alpha);
+
+    const clientX = this.x;
+    const clientY = this.y;
+
+    requestAnimationFrame(() => this.tiltPicture({
+      clientX,
+      clientY,
+      isGyro: true,
+    }));
+  }
+
   drawPicture(pic) {
-    this.canvas.innerHTML = `
+    canvas.innerHTML = `
       <li class="pictureContainer">
         <div class="description">
           <p class="name">«${pic.description}»</p>
@@ -80,10 +195,7 @@ class Picture {
         </div>
         <div id="${pic.id}" class="picture">
           ${pic.figures.map((fig, index) => (
-            `<div
-              class="fig${index} figure"
-              data-speed="${fig.speed}"
-              data-rotate="${fig.rotate ? fig.rotate : ''}"></div>`
+            `<div class="fig${index} figure"></div>`
           ))}
         </div>
       </li>
@@ -94,8 +206,7 @@ class Picture {
 
       this.figures[index] = {
         el,
-        speed: el.dataset.speed,
-        rotate: el.dataset.rotate,
+        speed: fig.speed,
       }
     })
   }
@@ -111,8 +222,18 @@ class Picture {
     }
   }
 
+  findCenterCoordinates() {
+    let cx = this.picture.offsetLeft + this.picture.offsetWidth / 2;
+    let cy = this.picture.offsetTop + this.picture.offsetHeight / 2;
+    return [cx, cy];
+  }
+
+  parallax(e) {
+    requestAnimationFrame(() => this.moveObjects(e));
+  }
+
   moveObjects(e) {
-    const factor = e.isGyro ? 700 : 300; // more = slower
+    const factor = e.isGyro ? 800 : 300; // more = slower
 
     if (!e.isGyro && !this.x && !this.y) {
       this.x = e.clientX;
@@ -122,8 +243,46 @@ class Picture {
 
     this.figures.forEach(fig => {
       const { xPos, yPos } = this.findCoordinates(fig, e, factor);
-      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) rotate(${fig.rotate || 0}deg)`;
+      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
     });
+  }
+
+  tiltPicture(e) {
+    this.setTransform(e);
+
+    this.figures.forEach(fig => {
+      fig.el.style.transform = `translateZ(${fig.speed * 3}px)`;
+    });
+  }
+
+  setTransform(e) {
+    const { clientX, clientY } = e;
+
+    const multiplier = e.isGyro ? 100 : 15; // more = slower
+
+    const [cx, cy] = this.findCenterCoordinates();
+
+    let xRot = -(cy - clientY) / multiplier;
+    const yRot = (cx - clientX) / multiplier;
+
+    if (e.isGyro) xRot = -xRot;
+
+    const picture = document.getElementById(this.picture.id);
+    const isScaled = window.getComputedStyle(picture, null).getPropertyValue('direction') === 'rtl';
+
+    this.picture.style.transform = isScaled
+      ? `perspective(${this.perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg) scale(0.7)`
+      : `perspective(${this.perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg)`;
+  }
+
+  reset() {
+    this.picture.style.transform =
+      this.picture.style.transform.indexOf('scale(0.7)') >= 0
+        ? `perspective(${this.perspective}px) scale(0.7)`
+        : `perspective(${this.perspective}px)`;
+
+    this.figures.forEach(fig => fig.el.style.transform = 'null');
+    this.x = this.y = 0;
   }
 }
 

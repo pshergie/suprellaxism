@@ -45,7 +45,6 @@ class Picture {
   constructor(pic) {
     this.figures = new Array(pic.figures.length);
     this.perspective = 1000;
-    this.multiplier = 15;
     this.x = 0;
     this.y = 0;
 
@@ -53,7 +52,8 @@ class Picture {
 
     this.picture = document.getElementById(pic.id);
 
-    this.deviceMotion = this.deviceMotion.bind(this);
+    this.deviceParallax = this.deviceParallax.bind(this);
+    this.deviceTilt = this.deviceTilt.bind(this);
     this.parallax = this.parallax.bind(this);
     this.tiltPicture = this.tiltPicture.bind(this);
     this.parallaxAndTilt = this.parallaxAndTilt.bind(this);
@@ -133,6 +133,11 @@ class Picture {
 
       window.removeEventListener('mousemove', this.parallax);
       this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
+
+      if (window.DeviceMotionEvent) {
+        window.removeEventListener('devicemotion', this.deviceParallax);
+        window.addEventListener('devicemotion', this.deviceTilt, { passive: true });
+      }
     }
     else {
       this.picture.classList.remove('tilt');
@@ -141,12 +146,13 @@ class Picture {
       window.addEventListener('mousemove', this.parallax, { passive: true });
 
       if (window.DeviceMotionEvent) {
-        window.addEventListener('devicemotion', this.deviceMotion, { passive: true });
+        window.removeEventListener('devicemotion', this.deviceTilt);
+        window.addEventListener('devicemotion', this.deviceParallax, { passive: true });
       }
     }
   }
 
-  deviceMotion(e) {
+  deviceParallax(e) {
     const beta = e.rotationRate.beta.toPrecision(2)
     const alpha = e.rotationRate.alpha.toPrecision(2);
 
@@ -157,6 +163,23 @@ class Picture {
     const clientY = this.y;
 
     requestAnimationFrame(() => this.moveObjects({
+      clientX,
+      clientY,
+      isGyro: true,
+    }));
+  }
+
+  deviceTilt(e) {
+    const beta = e.rotationRate.beta.toPrecision(2)
+    const alpha = e.rotationRate.alpha.toPrecision(2);
+
+    this.x += parseFloat(beta);
+    this.y += parseFloat(alpha);
+
+    const clientX = this.x;
+    const clientY = this.y;
+
+    requestAnimationFrame(() => this.tiltPicture({
       clientX,
       clientY,
       isGyro: true,
@@ -235,14 +258,21 @@ class Picture {
   setTransform(e) {
     const { clientX, clientY } = e;
 
+    const multiplier = e.isGyro ? 100 : 15; // more = slower
+
     const [cx, cy] = this.findCenterCoordinates();
 
-    const xRot = -(cy - clientY) / this.multiplier;
-    const yRot = (cx - clientX) / this.multiplier;
+    let xRot = -(cy - clientY) / multiplier;
+    const yRot = (cx - clientX) / multiplier;
 
-    this.picture.style.transform = `
-      perspective(${this.perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg)
-    `;
+    if (e.isGyro) xRot = -xRot;
+
+    const picture = document.getElementById(this.picture.id);
+    const isScaled = window.getComputedStyle(picture, null).getPropertyValue('direction') === 'rtl';
+
+    this.picture.style.transform = isScaled
+      ? `perspective(${this.perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg) scale(0.7)`
+      : `perspective(${this.perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg)`;
   }
 
   reset() {

@@ -16,7 +16,7 @@ TODOs
 - [x] Reset button
 - [x] Fix translateY lag
 - [x] Fix z-index bug
+- [x] Gyro tilt
 - [ ] Fix figures cut bug
-- [ ] Gyro tilt
 - [ ] Navigation arrows
 - [ ] Add at least 8 pictures

@@ -26,6 +26,10 @@ body {
   text-align: center;
 }
 
+label {
+  line-height: 170%;
+}
+
 .toggles {
   display: flex;
   justify-content: center;
@@ -45,7 +49,7 @@ body {
 
 .reset {
   width: 72px;
-  height: 24px;
+  height: 28px;
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
@@ -66,7 +70,7 @@ body {
 #super + label:before {
   content: '';
   position: absolute;
-  top: -2px;
+  top: 1px;
   left: 0;
   width: 26px;
   height: 26px;
@@ -80,7 +84,7 @@ body {
   content: '✔';
   color: #222;
   position: absolute;
-  top: 2px;
+  top: 5px;
   left: 2px;
   width: 24px;
   height: 24px;
@@ -120,7 +124,7 @@ body {
 .checkbox + label:before {
   content: '';
   position: absolute;
-  top: -2px;
+  top: 1px;
   left: 0;
   width: 50px;
   height: 26px;
@@ -133,7 +137,7 @@ body {
 .checkbox + label:after {
   content: '';
   position: absolute;
-  top: 0;
+  top: 3px;
   left: 2px;
   width: 22px;
   height: 22px;
@@ -362,6 +366,7 @@ body {
   .picture {
     margin-top: -100px;
     transform: perspective(1000px) scale(0.7);
+    direction: rtl;
   }
 }
 
