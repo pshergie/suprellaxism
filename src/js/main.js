@@ -43,7 +43,7 @@ gallery.addEventListener('click', (e) => {
     const { offsetTop } = picturesContainer;
 
     new Picture(pictureList[index]);
-    window.scrollTo(0, offsetTop);
+    window.scrollTo(0, offsetTop - 22);
   }
 });
 
@@ -90,25 +90,6 @@ class Picture {
       checkbox.disabled = false;
       this.setMode({ super: 'off' });
     }
-  }
-
-  parallaxAndTilt(e) {
-    const { clientX, clientY } = e;
-    const factor = 75; // more = slower
-
-    if (!this.x && !this.y) {
-      this.x = clientX;
-      this.y = clientY;
-      return;
-    }
-
-    this.figures.forEach(fig => {
-      const { xPos, yPos } = this.findCoordinates(fig, e, factor);
-      const zIndex = Math.ceil(fig.speed / 2);
-      fig.el.style.transform = `translate3d(${xPos}px, ${yPos}px, ${50 + zIndex}px)`;
-    });
-
-    this.setTransform(e);
   }
 
   setMode(e) {
@@ -257,6 +238,29 @@ class Picture {
 
     this.figures.forEach(fig => {
       fig.el.style.transform = `translateZ(${fig.speed * 3}px)`;
+    });
+  }
+
+  parallaxAndTilt(e) {
+    const { clientX, clientY } = e;
+
+    if (!this.x && !this.y) {
+      this.x = clientX;
+      this.y = clientY;
+      return;
+    }
+
+    this.setTransform(e);
+
+    const factor = 75; // more = slower
+    const divider = 2;
+
+    this.figures.forEach(fig => {
+      const { xPos, yPos } = this.findCoordinates(fig, e, factor);
+      const zIndex = Math.ceil(fig.speed / 2);
+      fig.el.style.transform = `
+        translate3d(${xPos / devider}px, ${yPos / devider}px, ${fig.speed * 3}px)
+      `;
     });
   }
 
