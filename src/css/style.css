@@ -477,11 +477,11 @@ label {
 }
 
 #pre0 {
-  background-image: url('/src/previews/pre0.svg');
+  background-image: src('/src/previews/pre0.svg');
 }
 
 #pre1 {
-  background-image: url('/src/previews/pre1.svg');
+  background-image: src('/src/previews/pre1.svg');
 }
 
 /* MEDIA QUERIES */
