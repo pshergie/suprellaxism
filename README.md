@@ -1,5 +1,9 @@
 # suprellaxism
 
+Rotate your phone or move your mouse
+
+![Preview](./src/previews/[preview.png])
+
 TODOs
 - [x] Parallax
 - [x] Picture proportions

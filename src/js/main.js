@@ -257,9 +257,8 @@ class Picture {
 
     this.figures.forEach(fig => {
       const { xPos, yPos } = this.findCoordinates(fig, e, factor);
-      const zIndex = Math.ceil(fig.speed / 2);
       fig.el.style.transform = `
-        translate3d(${xPos / devider}px, ${yPos / devider}px, ${fig.speed * 3}px)
+        translate3d(${xPos / divider}px, ${yPos / divider}px, ${fig.speed * 3}px)
       `;
     });
   }
