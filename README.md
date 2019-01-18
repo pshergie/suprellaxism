@@ -18,5 +18,4 @@ TODOs
 - [x] Fix z-index bug
 - [x] Gyro tilt
 - [ ] Fix figures cut bug
-- [ ] Navigation arrows
 - [ ] Add at least 4 pictures

@@ -243,54 +243,189 @@ label {
 }
 
 #id1 .fig0 {
-  top: 30px;
-  left: 194px;
-  width: 190px;
-  height: 202px;
+  top: 19px;
+  left: 189px;
+  width: 189px;
+  height: 201px;
   background-image: url('/src/pictures/pic1/fig0.svg');
   z-index: 1;
 }
 
 #id1 .fig1 {
-  top: 126px;
-  left: 108px;
-  width: 241px;
+  top: 116px;
+  left: 78px;
+  width: 240px;
   height: 136px;
   background-image: url('/src/pictures/pic1/fig1.svg');
   z-index: 3;
 }
 
 #id1 .fig2 {
-  top: 234px;
-  left: 104px;
-  width: 255px;
-  height: 153px;
+  top: 223px;
+  left: 73px;
+  width: 254px;
+  height: 151px;
   background-image: url('/src/pictures/pic1/fig2.svg');
   z-index: 3;
 }
 
 #id1 .fig3 {
-  top: 102px;
-  left: 104px;
-  width: 238px;
-  height: 388px;
+  top: 106px;
+  left: 68px;
+  width: 237px;
+  height: 435px;
   background-image: url('/src/pictures/pic1/fig3.svg');
   z-index: 2;
 }
 
 #id1 .fig4 {
-  top: 402px;
-  left: 77px;
-  width: 235px;
-  height: 154px;
+  top: 406px;
+  left: 36px;
+  width: 234px;
+  height: 153px;
   background-image: url('/src/pictures/pic1/fig4.svg');
   z-index: 1;
 }
 
 /* ID 2 */
 
-#id1 {
+#id2 {
   background: #f3f3f3;
+}
+
+#id2 .fig0 {
+  top: 29px;
+  left: 149px;
+  width: 57px;
+  height: 40px;
+  background-image: url('/src/pictures/pic2/fig0.svg');
+  z-index: 1;
+}
+
+#id2 .fig1 {
+  top: 42px;
+  left: 28px;
+  width: 192px;
+  height: 113px;
+  background-image: url('/src/pictures/pic2/fig1.svg');
+  z-index: 1;
+}
+
+#id2 .fig2 {
+  top: 42px;
+  left: 165px;
+  width: 92px;
+  height: 53px;
+  background-image: url('/src/pictures/pic2/fig2.svg');
+  z-index: 1;
+}
+
+#id2 .fig3 {
+  top: 129px;
+  left: 163px;
+  width: 26px;
+  height: 27px;
+  background-image: url('/src/pictures/pic2/fig3.svg');
+  z-index: 1;
+}
+
+#id2 .fig4 {
+  top: 72px;
+  left: 43px;
+  width: 316px;
+  height: 436px;
+  background-image: url('/src/pictures/pic2/fig4.svg');
+  z-index: 3;
+}
+
+#id2 .fig5 {
+  top: 140px;
+  left: 71px;
+  width: 253px;
+  height: 286px;
+  background-image: url('/src/pictures/pic2/fig5.svg');
+  z-index: 2;
+}
+
+#id2 .fig6 {
+  top: 208px;
+  left: 123px;
+  width: 224px;
+  height: 195px;
+  background-image: url('/src/pictures/pic2/fig6.svg');
+  z-index: 3;
+}
+
+#id2 .fig7 {
+  top: 258px;
+  left: 289px;
+  width: 114px;
+  height: 48px;
+  background-image: url('/src/pictures/pic2/fig7.svg');
+  z-index: 5;
+}
+
+#id2 .fig8 {
+  top: 124px;
+  left: 143px;
+  width: 182px;
+  height: 365px;
+  background-image: url('/src/pictures/pic2/fig8.svg');
+  z-index: 1;
+}
+
+#id2 .fig9 {
+  top: 441px;
+  left: 86px;
+  width: 163px;
+  height: 87px;
+  background-image: url('/src/pictures/pic2/fig9.svg');
+  z-index: 2;
+}
+
+#id2 .fig10 {
+  top: 370px;
+  left: 179px;
+  width: 193px;
+  height: 151px;
+  background-image: url('/src/pictures/pic2/fig10.svg');
+  z-index: 3;
+}
+
+#id2 .fig11 {
+  top: 366px;
+  left: 372px;
+  width: 46px;
+  height: 178px;
+  background-image: url('/src/pictures/pic2/fig11.svg');
+  z-index: 2;
+}
+
+#id2 .fig12 {
+  top: 471px;
+  left: 365px;
+  width: 20px;
+  height: 64px;
+  background-image: url('/src/pictures/pic2/fig12.svg');
+  z-index: 1;
+}
+
+#id2 .fig13 {
+  top: 387px;
+  left: 376px;
+  width: 45px;
+  height: 131px;
+  background-image: url('/src/pictures/pic2/fig13.svg');
+  z-index: 3;
+}
+
+#id2 .fig14 {
+  top: 38px;
+  left: 190px;
+  width: 91px;
+  height: 47px;
+  background-image: url('/src/pictures/pic2/fig14.svg');
+  z-index: 2;
 }
 
 /* GALLERY */
@@ -309,7 +444,7 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 8px;
+  margin: 0 8px 16px;
   cursor: pointer;
 }
 
@@ -363,10 +498,6 @@ label {
   .picture {
     margin: 0 -16px;
   }
-
-  .gallery {
-    margin-top: -32px;
-  }
 }
 
 @media screen and (max-width: 450px) {
@@ -374,6 +505,14 @@ label {
     margin-top: -100px;
     transform: perspective(1000px) scale(0.7);
     direction: rtl;
+  }
+
+  .description {
+    margin-top: -80px;
+  }
+
+  .gallery {
+    margin-top: 0;
   }
 }
 
@@ -402,11 +541,11 @@ label {
 
   .pictureContainer {
     flex-direction: column;
+    margin-top: 16px;
   }
 
   .description {
     order: 1;
-    margin-top: 0;
   }
 }
 

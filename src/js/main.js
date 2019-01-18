@@ -5,8 +5,7 @@ const pictureList = [
     date: '1915',
     name: 'Red square and black square',
     figures: [
-      { speed: 10 },
-      { speed: 20 },
+      { speed: 10 }, { speed: 20 },
     ],
   },
   {
@@ -15,11 +14,7 @@ const pictureList = [
     date: '1916',
     name: 'Unnamed',
     figures: [
-      { speed: 10 },
-      { speed: 25 },
-      { speed: 25 },
-      { speed: 15 },
-      { speed: 10 },
+      { speed: 10 }, { speed: 25 }, { speed: 25 }, { speed: 15 }, { speed: 10 },
     ],
   },
   {
@@ -28,7 +23,9 @@ const pictureList = [
     date: '1915',
     name: 'Suprematism',
     figures: [
-
+      { speed: 10 }, { speed: 15 }, { speed: 20 }, { speed: 25 }, { speed: 30 },
+      { speed: 20 }, { speed: 25 }, { speed: 30 }, { speed: 10 }, { speed: 15 },
+      { speed: 20 }, { speed: 20 }, { speed: 10 }, { speed: 30 }, { speed: 25 },
     ]
   }
 ];
@@ -197,7 +194,7 @@ class Picture {
   drawPicture(pic) {
     canvas.innerHTML = `
       <li class="pictureContainer">
-        <div class="name">
+        <div class="description">
           <p class="name">«${pic.name}»</p>
           <p class="author">${pic.author}, ${pic.date}</p>
         </div>

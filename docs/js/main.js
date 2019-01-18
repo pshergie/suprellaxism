@@ -3,25 +3,31 @@ const pictureList = [
     id: 'id0',
     author: 'Kazimir Malevich',
     date: '1915',
-    description: 'Red square and black square',
+    name: 'Red square and black square',
     figures: [
-      { speed: 10 },
-      { speed: 20 },
+      { speed: 10 }, { speed: 20 },
     ],
   },
   {
     id: 'id1',
     author: 'Nadezhda Udaltsova',
     date: '1916',
-    description: 'Unnamed',
+    name: 'Unnamed',
     figures: [
-      { speed: 10 },
-      { speed: 25 },
-      { speed: 25 },
-      { speed: 15 },
-      { speed: 10 },
+      { speed: 10 }, { speed: 25 }, { speed: 25 }, { speed: 15 }, { speed: 10 },
     ],
   },
+  {
+    id: 'id2',
+    author: 'Nikolaj Suetin',
+    date: '1915',
+    name: 'Suprematism',
+    figures: [
+      { speed: 10 }, { speed: 15 }, { speed: 20 }, { speed: 25 }, { speed: 30 },
+      { speed: 20 }, { speed: 25 }, { speed: 30 }, { speed: 10 }, { speed: 15 },
+      { speed: 20 }, { speed: 20 }, { speed: 10 }, { speed: 30 }, { speed: 25 },
+    ]
+  }
 ];
 
 const gallery = document.getElementsByClassName('gallery')[0];
@@ -153,14 +159,7 @@ class Picture {
   }
 
   deviceParallax(e) {
-    const beta = e.rotationRate.beta.toPrecision(2)
-    const alpha = e.rotationRate.alpha.toPrecision(2);
-
-    this.x += parseFloat(beta);
-    this.y += parseFloat(alpha);
-
-    const clientX = this.x;
-    const clientY = this.y;
+    const [clientX, clientY] = this.processGyro(e);
 
     requestAnimationFrame(() => this.moveObjects({
       clientX,
@@ -170,6 +169,16 @@ class Picture {
   }
 
   deviceTilt(e) {
+    const [clientX, clientY] = this.processGyro(e);
+
+    requestAnimationFrame(() => this.tiltPicture({
+      clientX,
+      clientY,
+      isGyro: true,
+    }));
+  }
+
+  processGyro(e) {
     const beta = e.rotationRate.beta.toPrecision(2)
     const alpha = e.rotationRate.alpha.toPrecision(2);
 
@@ -179,18 +188,14 @@ class Picture {
     const clientX = this.x;
     const clientY = this.y;
 
-    requestAnimationFrame(() => this.tiltPicture({
-      clientX,
-      clientY,
-      isGyro: true,
-    }));
+    return [clientX, clientY];
   }
 
   drawPicture(pic) {
     canvas.innerHTML = `
       <li class="pictureContainer">
         <div class="description">
-          <p class="name">«${pic.description}»</p>
+          <p class="name">«${pic.name}»</p>
           <p class="author">${pic.author}, ${pic.date}</p>
         </div>
         <div id="${pic.id}" class="picture">
