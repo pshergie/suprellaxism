@@ -428,6 +428,120 @@ label {
   z-index: 2;
 }
 
+/* ID 3 */
+
+#id3 {
+  background: #beb8a8;
+}
+
+#id3 .fig0 {
+  top: 86px;
+  left: 144px;
+  width: 264px;
+  height: 212px;
+  background-image: url('/src/pictures/pic3/fig0.svg');
+  z-index: 1;
+}
+
+#id3 .fig1 {
+  top: 130px;
+  left: 153px;
+  width: 78px;
+  height: 59px;
+  background-image: url('/src/pictures/pic3/fig1.svg');
+  z-index: 1;
+}
+
+#id3 .fig2 {
+  top: 130px;
+  left: 153px;
+  width: 60px;
+  height: 77px;
+  background-image: url('/src/pictures/pic3/fig2.svg');
+  z-index: 1;
+}
+
+#id3 .fig3 {
+  top: 188px;
+  left: 213px;
+  width: 18px;
+  height: 18px;
+  background-image: url('/src/pictures/pic3/fig3.svg');
+  z-index: 1;
+}
+
+#id3 .fig4 {
+  top: 197px;
+  left: 305px;
+  width: 2px;
+  height: 169px;
+  background-image: url('/src/pictures/pic3/fig4.svg');
+  z-index: 2;
+}
+
+#id3 .fig5 {
+  top: 197px;
+  left: 307px;
+  width: 2px;
+  height: 169px;
+  background-image: url('/src/pictures/pic3/fig5.svg');
+  z-index: 1;
+}
+
+#id3 .fig6 {
+  top: 197px;
+  left: 305px;
+  width: 3px;
+  height: 169px;
+  background-image: url('/src/pictures/pic3/fig6.svg');
+  z-index: 1;
+}
+
+#id3 .fig7 {
+  top: 208px;
+  left: 76px;
+  width: 241px;
+  height: 4px;
+  background-image: url('/src/pictures/pic3/fig7.svg');
+  z-index: 1;
+}
+
+#id3 .fig8 {
+  top: 209px;
+  left: 75px;
+  width: 214px;
+  height: 210px;
+  background-image: url('/src/pictures/pic3/fig8.svg');
+  z-index: 1;
+}
+
+#id3 .fig9 {
+  top: 199px;
+  left: 67px;
+  width: 195px;
+  height: 195px;
+  background-image: url('/src/pictures/pic3/fig9.svg');
+  z-index: 1;
+}
+
+#id3 .fig10 {
+  top: 399px;
+  left: 195px;
+  width: 8px;
+  height: 40px;
+  background-image: url('/src/pictures/pic3/fig10.svg');
+  z-index: 1;
+}
+
+#id3 .fig11 {
+  top: 417px;
+  left: 181px;
+  width: 35px;
+  height: 7px;
+  background-image: url('/src/pictures/pic3/fig11.svg');
+  z-index: 1;
+}
+
 /* GALLERY */
 
 .gallery {

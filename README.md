@@ -1,6 +1,6 @@
 # suprellaxism
 
-Rotate your phone or move your mouse
+Rotate your phone or move your mouse. Change modes.
 
 ![Preview](./src/previews/preview.png)
 
@@ -21,5 +21,5 @@ TODOs
 - [x] Fix translateY lag
 - [x] Fix z-index bug
 - [x] Gyro tilt
+- [x] Add at least 4 pictures
 - [ ] Fix figures cut bug
-- [ ] Add at least 4 pictures

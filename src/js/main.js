@@ -19,13 +19,24 @@ const pictureList = [
   },
   {
     id: 'id2',
-    author: 'Nikolaj Suetin',
+    author: 'Nikolai Suetin',
     date: '1915',
     name: 'Suprematism',
     figures: [
       { speed: 10 }, { speed: 15 }, { speed: 20 }, { speed: 25 }, { speed: 30 },
       { speed: 20 }, { speed: 25 }, { speed: 30 }, { speed: 10 }, { speed: 15 },
       { speed: 20 }, { speed: 20 }, { speed: 10 }, { speed: 30 }, { speed: 25 },
+    ]
+  },
+  {
+    id: 'id3',
+    author: 'El Lissitzky',
+    date: '1924',
+    name: 'Kestnermappe Proun, Rob. Levnis and Chapman GmbH Hannover #5',
+    figures: [
+      { speed: 10 }, { speed: 10 }, { speed: 10 }, { speed: 10 },
+      { speed: 10 }, { speed: 10 }, { speed: 10 }, { speed: 10 },
+      { speed: 10 }, { speed: 10 }, { speed: 10 }, { speed: 10 },
     ]
   }
 ];
@@ -60,6 +71,7 @@ class Picture {
 
     this.deviceParallax = this.deviceParallax.bind(this);
     this.deviceTilt = this.deviceTilt.bind(this);
+    this.deviceParallaxAndTilt = this.deviceParallaxAndTilt.bind(this);
     this.parallax = this.parallax.bind(this);
     this.tiltPicture = this.tiltPicture.bind(this);
     this.parallaxAndTilt = this.parallaxAndTilt.bind(this);
@@ -101,7 +113,12 @@ class Picture {
         this.picture.classList.add('tilt');
         window.removeEventListener('mousemove', this.parallax);
       }
-      this.picture.addEventListener('mousemove', this.parallaxAndTilt);
+
+      this.picture.addEventListener('mousemove', this.parallaxAndTilt, { passive: true });
+
+      if (window.DeviceMotionEvent) {
+        window.addEventListener('devicemotion', this.deviceParallaxAndTilt, { passive: true });
+      }
     }
     else if (e.super === 'off') {
       if (checkbox.checked) {
@@ -113,7 +130,12 @@ class Picture {
         this.picture.removeEventListener('mousemove', this.tiltPicture);
         window.addEventListener('mousemove', this.parallax);
       }
+
       this.picture.removeEventListener('mousemove', this.parallaxAndTilt);
+
+      if (window.DeviceMotionEvent) {
+        window.removeEventListener('mousemove', this.deviceParallaxAndTilt);
+      }
     }
     else if (e.target.checked) {
       this.picture.classList.add('tilt');
@@ -153,6 +175,16 @@ class Picture {
     const [clientX, clientY] = this.processGyro(e);
 
     requestAnimationFrame(() => this.tiltPicture({
+      clientX,
+      clientY,
+      isGyro: true,
+    }));
+  }
+
+  deviceParallaxAndTilt(e) {
+    const [clientX, clientY] = this.processGyro(e);
+
+    requestAnimationFrame(() => this.parallaxAndTilt({
       clientX,
       clientY,
       isGyro: true,
@@ -250,15 +282,21 @@ class Picture {
       return;
     }
 
-    this.setTransform(e);
+    const [cx, cy] = this.findCenterCoordinates();
 
-    const factor = 75; // more = slower
-    const divider = 2;
+    this.setTransform(e);
+    const divider = e.isGyro ? 50 : 8; // more = slower
 
     this.figures.forEach(fig => {
-      const { xPos, yPos } = this.findCoordinates(fig, e, factor);
+      let xPos = -(cx - clientX) / divider;
+      let yPos = -(cy - clientY) / divider;
+
+      if (e.isGyro) {
+        yPos = -yPos;
+      }
+
       fig.el.style.transform = `
-        translate3d(${xPos / divider}px, ${yPos / divider}px, ${fig.speed * 3}px)
+        translate3d(${xPos}px, ${yPos}px, ${fig.speed * 3}px)
       `;
     });
   }
@@ -266,12 +304,12 @@ class Picture {
   setTransform(e) {
     const { clientX, clientY } = e;
 
-    const multiplier = e.isGyro ? 100 : 15; // more = slower
+    const divider = e.isGyro ? 100 : 15; // more = slower
 
     const [cx, cy] = this.findCenterCoordinates();
 
-    let xRot = -(cy - clientY) / multiplier;
-    const yRot = (cx - clientX) / multiplier;
+    let xRot = -(cy - clientY) / divider;
+    const yRot = (cx - clientX) / divider;
 
     if (e.isGyro) xRot = -xRot;
 
@@ -295,4 +333,4 @@ class Picture {
 }
 
 // Default init with first picture
-new Picture(pictureList[0]);
+new Picture(pictureList[3]);
