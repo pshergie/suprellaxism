@@ -34,9 +34,9 @@ const pictureList = [
     date: '1924',
     name: 'Kestnermappe Proun, Rob. Levnis and Chapman GmbH Hannover #5',
     figures: [
-      { speed: 10 }, { speed: 10 }, { speed: 10 }, { speed: 10 },
-      { speed: 10 }, { speed: 10 }, { speed: 10 }, { speed: 10 },
-      { speed: 10 }, { speed: 10 }, { speed: 10 }, { speed: 10 },
+      { speed: 10 }, { speed: 35 }, { speed: 30 }, { speed: 25 },
+      { speed: 20 }, { speed: 25 }, { speed: 30 }, { speed: 30 },
+      { speed: 35 }, { speed: 45 }, { speed: 30 }, { speed: 35 },
     ]
   }
 ];
@@ -214,7 +214,7 @@ class Picture {
         <div id="${pic.id}" class="picture">
           ${pic.figures.map((fig, index) => (
             `<div class="fig${index} figure"></div>`
-          ))}
+          )).join('')}
         </div>
       </li>
     `;

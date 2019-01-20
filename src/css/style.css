@@ -449,7 +449,7 @@ label {
   width: 78px;
   height: 59px;
   background-image: url('/src/pictures/pic3/fig1.svg');
-  z-index: 1;
+  z-index: 2;
 }
 
 #id3 .fig2 {
@@ -458,7 +458,7 @@ label {
   width: 60px;
   height: 77px;
   background-image: url('/src/pictures/pic3/fig2.svg');
-  z-index: 1;
+  z-index: 2;
 }
 
 #id3 .fig3 {
@@ -467,7 +467,7 @@ label {
   width: 18px;
   height: 18px;
   background-image: url('/src/pictures/pic3/fig3.svg');
-  z-index: 1;
+  z-index: 2;
 }
 
 #id3 .fig4 {
@@ -485,7 +485,7 @@ label {
   width: 2px;
   height: 169px;
   background-image: url('/src/pictures/pic3/fig5.svg');
-  z-index: 1;
+  z-index: 2;
 }
 
 #id3 .fig6 {
@@ -494,7 +494,7 @@ label {
   width: 3px;
   height: 169px;
   background-image: url('/src/pictures/pic3/fig6.svg');
-  z-index: 1;
+  z-index: 2;
 }
 
 #id3 .fig7 {
@@ -503,7 +503,7 @@ label {
   width: 241px;
   height: 4px;
   background-image: url('/src/pictures/pic3/fig7.svg');
-  z-index: 1;
+  z-index: 3;
 }
 
 #id3 .fig8 {
@@ -512,7 +512,7 @@ label {
   width: 214px;
   height: 210px;
   background-image: url('/src/pictures/pic3/fig8.svg');
-  z-index: 1;
+  z-index: 3;
 }
 
 #id3 .fig9 {
@@ -521,7 +521,7 @@ label {
   width: 195px;
   height: 195px;
   background-image: url('/src/pictures/pic3/fig9.svg');
-  z-index: 1;
+  z-index: 4;
 }
 
 #id3 .fig10 {
@@ -530,7 +530,7 @@ label {
   width: 8px;
   height: 40px;
   background-image: url('/src/pictures/pic3/fig10.svg');
-  z-index: 1;
+  z-index: 3;
 }
 
 #id3 .fig11 {
@@ -539,7 +539,7 @@ label {
   width: 35px;
   height: 7px;
   background-image: url('/src/pictures/pic3/fig11.svg');
-  z-index: 1;
+  z-index: 4;
 }
 
 /* GALLERY */
