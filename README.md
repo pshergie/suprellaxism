@@ -22,5 +22,6 @@ TODOs
 - [x] Fix z-index bug
 - [x] Gyro tilt
 - [x] Add at least 4 pictures
+- [ ] Tilt: Return picture to initial state on mouseleave
 - [ ] Separate gallery
 - [ ] Fix figures cut bug
