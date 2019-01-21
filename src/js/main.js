@@ -122,6 +122,7 @@ class Picture {
     }
     else if (e.super === 'off') {
       if (checkbox.checked) {
+        this.picture.classList.add('tilt');
         window.removeEventListener('mousemove', this.parallax);
         this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
       }
@@ -139,7 +140,6 @@ class Picture {
     }
     else if (e.target.checked) {
       this.picture.classList.add('tilt');
-
       window.removeEventListener('mousemove', this.parallax);
       this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
 
