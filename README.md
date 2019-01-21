@@ -24,4 +24,5 @@ TODOs
 - [x] Add at least 4 pictures
 - [ ] Tilt: Return picture to initial state on mouseleave
 - [ ] Separate gallery
+- [ ] transform through matrix3d
 - [ ] Fix figures cut bug
