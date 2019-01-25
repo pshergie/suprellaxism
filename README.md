@@ -1,4 +1,4 @@
-# suprellaxism
+# Suprellaxism
 
 Rotate your phone or move your mouse. Change modes.
 
@@ -22,7 +22,7 @@ TODOs
 - [x] Fix z-index bug
 - [x] Gyro tilt
 - [x] Add at least 4 pictures
-- [ ] Tilt: Return picture to initial state on mouseleave
-- [ ] Separate gallery
+- [x] Separate gallery
+- [x] Tilt: Return picture to initial state on mouseleave & add transition
 - [ ] transform through matrix3d
 - [ ] Fix figures cut bug

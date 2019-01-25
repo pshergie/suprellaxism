@@ -125,6 +125,7 @@ class Picture {
         this.picture.classList.add('tilt');
         window.removeEventListener('mousemove', this.parallax);
         this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
+        this.picture.addEventListener('mouseleave', this.reset);
       }
       else {
         this.picture.classList.remove('tilt');
@@ -142,6 +143,7 @@ class Picture {
       this.picture.classList.add('tilt');
       window.removeEventListener('mousemove', this.parallax);
       this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
+      this.picture.addEventListener('mouseleave', this.reset);
 
       if (window.DeviceMotionEvent) {
         window.removeEventListener('devicemotion', this.deviceParallax);
