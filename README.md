@@ -24,5 +24,6 @@ TODOs
 - [x] Add at least 4 pictures
 - [x] Separate gallery
 - [x] Tilt: Return picture to initial state on mouseleave & add transition
-- [ ] transform through matrix3d
+- [x] Constrain tilt
+- [ ] Transform through matrix3d
 - [ ] Fix figures cut bug

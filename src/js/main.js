@@ -62,6 +62,7 @@ class Picture {
   constructor(pic) {
     this.figures = new Array(pic.figures.length);
     this.perspective = 1000;
+    this.maxTilt = { beta: 3000, alpha: 3000 };
     this.x = 0;
     this.y = 0;
 
@@ -196,12 +197,17 @@ class Picture {
   processGyro(e) {
     const beta = e.rotationRate.beta.toPrecision(2)
     const alpha = e.rotationRate.alpha.toPrecision(2);
+    const { maxTilt } = this;
 
-    this.x += parseFloat(beta);
     this.y += parseFloat(alpha);
+    this.x += parseFloat(beta)
 
-    const clientX = this.x;
-    const clientY = this.y;
+    const clientX = Math.abs(this.x) < maxTilt.beta
+      ? this.x
+      : this.x < 0 ? -maxTilt.beta : maxTilt.beta;
+    const clientY = Math.abs(this.y) < maxTilt.alpha
+      ? this.y
+      : this.y < 0 ? -maxTilt.alpha : maxTilt.alpha;
 
     return [clientX, clientY];
   }
@@ -335,4 +341,4 @@ class Picture {
 }
 
 // Default init with first picture
-new Picture(pictureList[0]);
+new Picture(pictureList[2]);
