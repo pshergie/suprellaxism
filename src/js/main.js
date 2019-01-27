@@ -341,4 +341,4 @@ class Picture {
 }
 
 // Default init with first picture
-new Picture(pictureList[2]);
+new Picture(pictureList[0]);

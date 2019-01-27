@@ -25,5 +25,5 @@ TODOs
 - [x] Separate gallery
 - [x] Tilt: Return picture to initial state on mouseleave & add transition
 - [x] Constrain tilt
-- [ ] Transform through matrix3d
+- [ ] Transform via matrix3d
 - [ ] Fix figures cut bug

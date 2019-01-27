@@ -668,8 +668,9 @@ label {
     position: relative;
     width: 29px;
     height: 17px;
-    margin: 0 auto;
+    margin: 8px auto 16px;
   }
+
   .divider:before,
   .divider:after {
     content: "";
@@ -682,6 +683,7 @@ label {
     border-radius: 50px 50px 0 50px;
     transform: rotate(-45deg);
   }
+
   .divider:after {
     left: auto;
     right: 0;
