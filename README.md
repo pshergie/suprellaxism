@@ -25,5 +25,6 @@ TODOs
 - [x] Separate gallery
 - [x] Tilt: Return picture to initial state on mouseleave & add transition
 - [x] Constrain tilt
+- [ ] Fix max range stuck bug
 - [ ] Transform via matrix3d
 - [ ] Fix figures cut bug
