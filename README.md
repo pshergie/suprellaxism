@@ -2,6 +2,8 @@
 
 Rotate your phone or move your mouse. Change modes.
 
+https://pshergie.github.io/suprellaxism/
+
 ![Preview](./src/previews/preview.png)
 
 TODOs
