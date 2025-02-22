@@ -195,14 +195,16 @@ class Picture {
   }
 
   processGyro(e) {
-    const beta = (e.rotationRate && typeof e.rotationRate.beta === 'number') ? e.rotationRate.beta.toPrecision(2) : 0;
-    const alpha = (e.rotationRate && typeof e.rotationRate.alpha === 'number') ? e.rotationRate.alpha.toPrecision(2) : 0;
-    const maxTilt = this.maxTilt;
+    const rotationRate = e.rotationRate;
 
-    if (!e.rotationRate || typeof e.rotationRate.beta !== 'number' || typeof e.rotationRate.alpha !== 'number') {
-      console.error('Invalid rotationRate:', e.rotationRate);
+    if (!rotationRate || rotationRate.alpha === null || rotationRate.beta === null || rotationRate.gamma === null) {
+      console.warn('Device motion data unavailable or invalid.');
       return [0, 0];
     }
+
+    const beta = rotationRate.beta.toPrecision(2);
+    const alpha = rotationRate.alpha.toPrecision(2);
+    const { maxTilt } = this;
 
     this.y += parseFloat(alpha);
     this.x += parseFloat(beta);
