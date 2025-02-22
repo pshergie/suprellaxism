@@ -199,8 +199,13 @@ class Picture {
     const alpha = e.rotationRate && e.rotationRate.alpha ? e.rotationRate.alpha.toPrecision(2) : 0;
     const { maxTilt } = this;
 
+    if (!e.rotationRate) {
+      console.error('rotationRate is null or undefined', e);
+      return [0, 0]; 
+    }
+
     this.y += parseFloat(alpha);
-    this.x += parseFloat(beta)
+    this.x += parseFloat(beta);
 
     const clientX = Math.abs(this.x) < maxTilt.beta
       ? this.x
