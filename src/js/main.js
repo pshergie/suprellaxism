@@ -118,7 +118,15 @@ class Picture {
       this.picture.addEventListener('mousemove', this.parallaxAndTilt, { passive: true });
 
       if (window.DeviceMotionEvent) {
-        window.addEventListener('devicemotion', this.deviceParallaxAndTilt, { passive: true });
+        if (typeof DeviceMotionEvent.requestPermission === 'function') {
+          DeviceMotionEvent.requestPermission().then((permissionState) => {
+            if (permissionState === 'granted') {
+              window.addEventListener('devicemotion', this.deviceParallaxAndTilt, { passive: true });
+            }
+          }).catch(console.error);
+        } else {
+          window.addEventListener('devicemotion', this.deviceParallaxAndTilt, { passive: true });
+        }
       }
     }
     else if (e.super === 'off') {
