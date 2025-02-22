@@ -94,6 +94,24 @@ class Picture {
     resetBtn.addEventListener('click', this.reset);
   }
 
+  requestDeviceMotionPermission() {
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      return DeviceMotionEvent.requestPermission()
+        .then((permissionState) => {
+          if (permissionState === 'granted') {
+            window.addEventListener('devicemotion', this.deviceParallaxAndTilt, { passive: true });
+          }
+        })
+        .catch(console.error);
+    } else {
+      window.addEventListener('devicemotion', this.deviceParallaxAndTilt, { passive: true });
+    }
+  }
+
+  removeDeviceMotionListener() {
+    window.removeEventListener('devicemotion', this.deviceParallaxAndTilt);
+  }
+
   onSuperModeToggle(e) {
     if (e.target.checked) {
       checkbox.disabled = true;
@@ -107,68 +125,17 @@ class Picture {
 
   setMode(e) {
     if (e.super === 'on') {
-      if (checkbox.checked) {
-        this.picture.removeEventListener('mousemove', this.tiltPicture);
-      }
-      else {
-        this.picture.classList.add('tilt');
-        window.removeEventListener('mousemove', this.parallax);
-      }
-
-      this.picture.addEventListener('mousemove', this.parallaxAndTilt, { passive: true });
-
-      if (window.DeviceMotionEvent) {
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
-          DeviceMotionEvent.requestPermission().then((permissionState) => {
-            if (permissionState === 'granted') {
-              window.addEventListener('devicemotion', this.deviceParallaxAndTilt, { passive: true });
-            }
-          }).catch(console.error);
-        } else {
-          window.addEventListener('devicemotion', this.deviceParallaxAndTilt, { passive: true });
-        }
-      }
-    }
-    else if (e.super === 'off') {
-      if (checkbox.checked) {
-        this.picture.classList.add('tilt');
-        window.removeEventListener('mousemove', this.parallax);
-        this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
-        this.picture.addEventListener('mouseleave', this.reset);
-      }
-      else {
-        this.picture.classList.remove('tilt');
-        this.picture.removeEventListener('mousemove', this.tiltPicture);
-        window.addEventListener('mousemove', this.parallax);
-      }
-
-      this.picture.removeEventListener('mousemove', this.parallaxAndTilt);
-
-      if (window.DeviceMotionEvent) {
-        window.removeEventListener('mousemove', this.deviceParallaxAndTilt);
-      }
-    }
-    else if (e.target.checked) {
-      this.picture.classList.add('tilt');
-      window.removeEventListener('mousemove', this.parallax);
-      this.picture.addEventListener('mousemove', this.tiltPicture, { passive: true });
-      this.picture.addEventListener('mouseleave', this.reset);
-
-      if (window.DeviceMotionEvent) {
-        window.removeEventListener('devicemotion', this.deviceParallax);
-        window.addEventListener('devicemotion', this.deviceTilt, { passive: true });
-      }
-    }
-    else {
-      this.picture.classList.remove('tilt');
-
-      this.picture.removeEventListener('mousemove', this.tiltPicture);
-      window.addEventListener('mousemove', this.parallax, { passive: true });
-
-      if (window.DeviceMotionEvent) {
-        window.removeEventListener('devicemotion', this.deviceTilt);
-        window.addEventListener('devicemotion', this.deviceParallax, { passive: true });
-      }
+      this.enableParallaxAndTilt();
+      this.requestDeviceMotionPermission();
+    } else if (e.super === 'off') {
+      this.disableParallaxAndTilt();
+      this.removeDeviceMotionListener();
+    } else if (e.target.checked) {
+      this.enableTilt();
+      this.requestDeviceMotionPermission();
+    } else {
+      this.disableTilt();
+      this.requestDeviceMotionPermission();
     }
   }
 
