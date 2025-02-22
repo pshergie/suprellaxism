@@ -227,7 +227,7 @@ label {
   left: 90px;
   width: 200px;
   height: 200px;
-  background-image: url('/src/pictures/pic0/fig0.svg');
+  background-image: url('pictures/pic0/fig0.svg');
 }
 
 #id0 .fig1 {
@@ -235,7 +235,7 @@ label {
   left: 245px;
   width: 120px;
   height: 120px;
-  background-image: url('/src/pictures/pic0/fig1.svg');
+  background-image: url('pictures/pic0/fig1.svg');
 }
 
 /* ID 1 */
@@ -249,7 +249,7 @@ label {
   left: 189px;
   width: 189px;
   height: 201px;
-  background-image: url('/src/pictures/pic1/fig0.svg');
+  background-image: url('pictures/pic1/fig0.svg');
   z-index: 1;
 }
 
@@ -258,7 +258,7 @@ label {
   left: 78px;
   width: 240px;
   height: 136px;
-  background-image: url('/src/pictures/pic1/fig1.svg');
+  background-image: url('pictures/pic1/fig1.svg');
   z-index: 3;
 }
 
@@ -267,7 +267,7 @@ label {
   left: 73px;
   width: 254px;
   height: 151px;
-  background-image: url('/src/pictures/pic1/fig2.svg');
+  background-image: url('pictures/pic1/fig2.svg');
   z-index: 3;
 }
 
@@ -276,7 +276,7 @@ label {
   left: 68px;
   width: 237px;
   height: 435px;
-  background-image: url('/src/pictures/pic1/fig3.svg');
+  background-image: url('pictures/pic1/fig3.svg');
   z-index: 2;
 }
 
@@ -285,7 +285,7 @@ label {
   left: 36px;
   width: 234px;
   height: 153px;
-  background-image: url('/src/pictures/pic1/fig4.svg');
+  background-image: url('pictures/pic1/fig4.svg');
   z-index: 1;
 }
 
@@ -300,7 +300,7 @@ label {
   left: 149px;
   width: 57px;
   height: 40px;
-  background-image: url('/src/pictures/pic2/fig0.svg');
+  background-image: url('pictures/pic2/fig0.svg');
   z-index: 1;
 }
 
@@ -309,7 +309,7 @@ label {
   left: 28px;
   width: 192px;
   height: 113px;
-  background-image: url('/src/pictures/pic2/fig1.svg');
+  background-image: url('pictures/pic2/fig1.svg');
   z-index: 1;
 }
 
@@ -318,7 +318,7 @@ label {
   left: 165px;
   width: 92px;
   height: 53px;
-  background-image: url('/src/pictures/pic2/fig2.svg');
+  background-image: url('pictures/pic2/fig2.svg');
   z-index: 1;
 }
 
@@ -327,7 +327,7 @@ label {
   left: 163px;
   width: 26px;
   height: 27px;
-  background-image: url('/src/pictures/pic2/fig3.svg');
+  background-image: url('pictures/pic2/fig3.svg');
   z-index: 1;
 }
 
@@ -336,7 +336,7 @@ label {
   left: 43px;
   width: 316px;
   height: 436px;
-  background-image: url('/src/pictures/pic2/fig4.svg');
+  background-image: url('pictures/pic2/fig4.svg');
   z-index: 4;
 }
 
@@ -345,7 +345,7 @@ label {
   left: 71px;
   width: 253px;
   height: 286px;
-  background-image: url('/src/pictures/pic2/fig5.svg');
+  background-image: url('pictures/pic2/fig5.svg');
   z-index: 2;
 }
 
@@ -354,7 +354,7 @@ label {
   left: 123px;
   width: 224px;
   height: 195px;
-  background-image: url('/src/pictures/pic2/fig6.svg');
+  background-image: url('pictures/pic2/fig6.svg');
   z-index: 3;
 }
 
@@ -363,7 +363,7 @@ label {
   left: 289px;
   width: 114px;
   height: 48px;
-  background-image: url('/src/pictures/pic2/fig7.svg');
+  background-image: url('pictures/pic2/fig7.svg');
   z-index: 5;
 }
 
@@ -372,7 +372,7 @@ label {
   left: 143px;
   width: 182px;
   height: 365px;
-  background-image: url('/src/pictures/pic2/fig8.svg');
+  background-image: url('pictures/pic2/fig8.svg');
   z-index: 1;
 }
 
@@ -381,7 +381,7 @@ label {
   left: 86px;
   width: 163px;
   height: 87px;
-  background-image: url('/src/pictures/pic2/fig9.svg');
+  background-image: url('pictures/pic2/fig9.svg');
   z-index: 2;
 }
 
@@ -390,7 +390,7 @@ label {
   left: 179px;
   width: 193px;
   height: 151px;
-  background-image: url('/src/pictures/pic2/fig10.svg');
+  background-image: url('pictures/pic2/fig10.svg');
   z-index: 3;
 }
 
@@ -399,7 +399,7 @@ label {
   left: 372px;
   width: 46px;
   height: 178px;
-  background-image: url('/src/pictures/pic2/fig11.svg');
+  background-image: url('pictures/pic2/fig11.svg');
   z-index: 2;
 }
 
@@ -408,7 +408,7 @@ label {
   left: 365px;
   width: 20px;
   height: 64px;
-  background-image: url('/src/pictures/pic2/fig12.svg');
+  background-image: url('pictures/pic2/fig12.svg');
   z-index: 1;
 }
 
@@ -417,7 +417,7 @@ label {
   left: 376px;
   width: 45px;
   height: 131px;
-  background-image: url('/src/pictures/pic2/fig13.svg');
+  background-image: url('pictures/pic2/fig13.svg');
   z-index: 3;
 }
 
@@ -426,7 +426,7 @@ label {
   left: 190px;
   width: 91px;
   height: 47px;
-  background-image: url('/src/pictures/pic2/fig14.svg');
+  background-image: url('pictures/pic2/fig14.svg');
   z-index: 2;
 }
 
@@ -441,7 +441,7 @@ label {
   left: 144px;
   width: 264px;
   height: 212px;
-  background-image: url('/src/pictures/pic3/fig0.svg');
+  background-image: url('pictures/pic3/fig0.svg');
   z-index: 1;
 }
 
@@ -450,7 +450,7 @@ label {
   left: 153px;
   width: 78px;
   height: 59px;
-  background-image: url('/src/pictures/pic3/fig1.svg');
+  background-image: url('pictures/pic3/fig1.svg');
   z-index: 2;
 }
 
@@ -459,7 +459,7 @@ label {
   left: 153px;
   width: 60px;
   height: 77px;
-  background-image: url('/src/pictures/pic3/fig2.svg');
+  background-image: url('pictures/pic3/fig2.svg');
   z-index: 2;
 }
 
@@ -468,7 +468,7 @@ label {
   left: 213px;
   width: 18px;
   height: 18px;
-  background-image: url('/src/pictures/pic3/fig3.svg');
+  background-image: url('pictures/pic3/fig3.svg');
   z-index: 2;
 }
 
@@ -477,7 +477,7 @@ label {
   left: 305px;
   width: 2px;
   height: 169px;
-  background-image: url('/src/pictures/pic3/fig4.svg');
+  background-image: url('pictures/pic3/fig4.svg');
   z-index: 2;
 }
 
@@ -486,7 +486,7 @@ label {
   left: 307px;
   width: 2px;
   height: 169px;
-  background-image: url('/src/pictures/pic3/fig5.svg');
+  background-image: url('pictures/pic3/fig5.svg');
   z-index: 2;
 }
 
@@ -495,7 +495,7 @@ label {
   left: 305px;
   width: 3px;
   height: 169px;
-  background-image: url('/src/pictures/pic3/fig6.svg');
+  background-image: url('pictures/pic3/fig6.svg');
   z-index: 2;
 }
 
@@ -504,7 +504,7 @@ label {
   left: 76px;
   width: 241px;
   height: 4px;
-  background-image: url('/src/pictures/pic3/fig7.svg');
+  background-image: url('pictures/pic3/fig7.svg');
   z-index: 3;
 }
 
@@ -513,7 +513,7 @@ label {
   left: 75px;
   width: 214px;
   height: 210px;
-  background-image: url('/src/pictures/pic3/fig8.svg');
+  background-image: url('pictures/pic3/fig8.svg');
   z-index: 3;
 }
 
@@ -522,7 +522,7 @@ label {
   left: 67px;
   width: 195px;
   height: 195px;
-  background-image: url('/src/pictures/pic3/fig9.svg');
+  background-image: url('pictures/pic3/fig9.svg');
   z-index: 4;
 }
 
@@ -531,7 +531,7 @@ label {
   left: 195px;
   width: 8px;
   height: 40px;
-  background-image: url('/src/pictures/pic3/fig10.svg');
+  background-image: url('pictures/pic3/fig10.svg');
   z-index: 3;
 }
 
@@ -540,7 +540,7 @@ label {
   left: 181px;
   width: 35px;
   height: 7px;
-  background-image: url('/src/pictures/pic3/fig11.svg');
+  background-image: url('pictures/pic3/fig11.svg');
   z-index: 4;
 }
 
