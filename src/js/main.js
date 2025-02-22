@@ -195,8 +195,8 @@ class Picture {
   }
 
   processGyro(e) {
-    const beta = e.rotationRate.beta.toPrecision(2)
-    const alpha = e.rotationRate.alpha.toPrecision(2);
+    const beta = e.rotationRate && e.rotationRate.beta ? e.rotationRate.beta.toPrecision(2) : 0;
+    const alpha = e.rotationRate && e.rotationRate.alpha ? e.rotationRate.alpha.toPrecision(2) : 0;
     const { maxTilt } = this;
 
     this.y += parseFloat(alpha);
