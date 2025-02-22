@@ -695,3 +695,13 @@ label {
 .points {
   margin-bottom: 16px;
 }
+
+#motion-permission-btn {
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: indianred;
+  font-weight: 600;
+  font-size: 16px;
+  color: whitesmoke;
+}
