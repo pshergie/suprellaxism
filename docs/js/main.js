@@ -340,37 +340,16 @@ class Picture {
   }
 }
 
-
-document.getElementById('motion-permission-btn').addEventListener('click', () => {
-  if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    DeviceMotionEvent.requestPermission()
-      .then((permissionState) => {
-        if (permissionState === 'granted') {
-          // Default init with first picture
-          new Picture(pictureList[0]);
-        } else {
-          console.log('Device motion permission denied.');
-        }
-      })
-      .catch(console.error);
-  } else {
-    // Default init with first picture
-    new Picture(pictureList[0]);
-  }
-});
-
-
 const motionBtn = document.getElementById('motion-permission-btn');
 
-// Check if permission is needed
 if (typeof DeviceMotionEvent.requestPermission === 'function') {
-  motionBtn.style.display = 'block'; // Show button only if permission is needed
+  motionBtn.style.display = 'block';
   motionBtn.addEventListener('click', () => {
     DeviceMotionEvent.requestPermission()
       .then((permissionState) => {
         if (permissionState === 'granted') {
           console.log('Device motion permission granted.');
-          motionBtn.style.display = 'none'; // Hide button after permission is granted
+          motionBtn.style.display = 'none';
           new Picture(pictureList[0]);
         } else {
           console.log('Device motion permission denied.');
