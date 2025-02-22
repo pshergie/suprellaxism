@@ -195,13 +195,13 @@ class Picture {
   }
 
   processGyro(e) {
-    const beta = e.rotationRate && e.rotationRate.beta ? e.rotationRate.beta.toPrecision(2) : 0;
-    const alpha = e.rotationRate && e.rotationRate.alpha ? e.rotationRate.alpha.toPrecision(2) : 0;
-    const { maxTilt } = this;
+    const beta = (e.rotationRate && typeof e.rotationRate.beta === 'number') ? e.rotationRate.beta.toPrecision(2) : 0;
+    const alpha = (e.rotationRate && typeof e.rotationRate.alpha === 'number') ? e.rotationRate.alpha.toPrecision(2) : 0;
+    const maxTilt = this.maxTilt;
 
-    if (!e.rotationRate) {
-      console.error('rotationRate is null or undefined', e);
-      return [0, 0]; 
+    if (!e.rotationRate || typeof e.rotationRate.beta !== 'number' || typeof e.rotationRate.alpha !== 'number') {
+      console.error('Invalid rotationRate:', e.rotationRate);
+      return [0, 0];
     }
 
     this.y += parseFloat(alpha);
